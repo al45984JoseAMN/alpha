@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>αlpha</title>
+
+    <style type="text/css">
+
+        /*Variables del modo oscuro*/
+        :root {
+            --bg-color: #f5f6fa;
+            --text-color: #2f3542;
+            --card-bg: #ffffff;
+            --border-color: #e4e7eb;
+            --accent-color: #f383db;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        /*variables al activar el modo oscuro*/
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+            --shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        /*Estilos generales de la pagina*/
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            padding-bottom: 90px; /* Espacio para que el reproductor flotante no tape contenido */
+        }
+        /*titulos*/
+        h1 {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 50px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--text-color);
+        }
+        /*Contenedor Multimedia Principal*/
+        .contenido-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            max-width: 520px;
+            width: 100%;
+        }
+
+        .track {
+            text-align: center;
+            width: 100%;
+        }
+
+        .track p {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+        }
+        /*imagenes y efectos hover*/
+        .contenedor-imagen {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            transition: 0.5s;
+        }
+
+        img:hover {
+            transform: scale(1.03);
+            box-shadow: 0px 0px 20px rgba(226, 37, 147, 0.5);
+        }
+        /*enlaces y boton modo oscuro*/
+        .link-tracklist {
+            margin-top: 15px;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .btn-modo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        body.dark-mode .btn-modo {
+            background-color: #ffffff;
+            color: #121212;
+        }
+        /*tarjetas*/
+        .card-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            box-sizing: border-box;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .card-content img {
+            width: 35%;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .card-text {
+            flex: 1;
+        }
+        /*responsive moviles*/
+        @media (max-width: 768px) {
+            .card-content {
+                flex-direction: column;
+            }
+            .card-content img {
+                width: 100%;
+            }
+        }
+        /*lista animada de canciones*/
+        .lista-canciones-box {
+            width: 100%;
+            max-width: 450px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .lista-canciones-box h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .lista-animada {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lista-animada li {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: rgba(243, 131, 219, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: aparecerLista 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        body.dark-mode .lista-animada li {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .lista-animada li:hover {
+            background-color: rgba(243, 131, 219, 0.15);
+            border-left-color: var(--accent-color);
+            transform: translateX(8px);
+        }
+
+        body.dark-mode .lista-animada li:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .lista-animada .numero {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .lista-animada .titulo {
+            font-size: 14px;
+            color: var(--text-color);
+            line-height: 1.4;
+            word-break: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        /*cajas de informacion*/
+        .info-genero {
+            width: 100%;
+            max-width: 800px;
+            text-align: justify;
+            line-height: 1.7;
+            font-size: 14.5px;
+            background-color: rgba(243, 131, 219, 0.03);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 3px solid rgba(243, 131, 219, 0.3);
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        body.dark-mode .info-genero {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-left-color: rgba(255, 255, 255, 0.2);
+        }
+        /*tabla de eventos*/
+        .tabla-eventos {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .tabla-eventos th, .tabla-eventos td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tabla-eventos th {
+            background-color: var(--border-color);
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .tabla-eventos tr:hover {
+            background-color: rgba(255, 51, 245, 0.178);
+        }
+
+        /* Estilos ajustados para el Slider / Carrusel */
+        .slider-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slider-image-wrapper {
+            width: 100%;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #000; 
+        }
+
+        .slider-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            object-position: center; 
+            border-radius: 0;
+            max-width: none;
+        }
+
+        .slider-caption {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-color);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .slider-caption h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .slider-caption p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: calc(380px / 2); 
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 18px;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .slider-btn-prev {
+            left: 15px;
+        }
+
+        .slider-btn-next {
+            right: 15px;
+        }
+
+        /* Animaciones para la lista de canciones */
+        @keyframes aparecerLista {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .lista-animada li:nth-child(1) { animation-delay: 0.1s; }
+        .lista-animada li:nth-child(2) { animation-delay: 0.2s; }
+        .lista-animada li:nth-child(3) { animation-delay: 0.3s; }
+        .lista-animada li:nth-child(4) { animation-delay: 0.4s; }
+        .lista-animada li:nth-child(5) { animation-delay: 0.5s; }
+        .lista-animada li:nth-child(6) { animation-delay: 0.6s; }
+        .lista-animada li:nth-child(7) { animation-delay: 0.7s; }
+        .lista-animada li:nth-child(8) { animation-delay: 0.8s; }
+        .lista-animada li:nth-child(9) { animation-delay: 0.9s; }
+        .lista-animada li:nth-child(10) { animation-delay: 1.0s; }
+        .lista-animada li:nth-child(11) { animation-delay: 1.1s; }
+        .lista-animada li:nth-child(12) { animation-delay: 1.2s; }
+        .lista-animada li:nth-child(13) { animation-delay: 1.3s; }
+        .lista-animada li:nth-child(14) { animation-delay: 1.4s; }
+        .lista-animada li:nth-child(15) { animation-delay: 1.5s; }
+        .lista-animada li:nth-child(16) { animation-delay: 1.6s; }
+        .lista-animada li:nth-child(17) { animation-delay: 1.7s; }
+        .lista-animada li:nth-child(18) { animation-delay: 1.8s; }
+        .lista-animada li:nth-child(19) { animation-delay: 1.9s; }
+        .lista-animada li:nth-child(20) { animation-delay: 2.0s; }
+
+        /* Apartado: Recomendaciones de alpha (Audios) */
+        .recommendations-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            box-sizing: border-box;
+        }
+
+        .recommendations-section h2 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .audio-card {
+            background-color: rgba(243, 131, 219, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body.dark-mode .audio-card {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .audio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(243, 131, 219, 0.15);
+            border-color: var(--accent-color);
+        }
+
+        .audio-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .audio-icon {
+            color: var(--accent-color);
+            font-size: 18px;
+        }
+
+        .audio-card-header p {
+            margin: 0;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-color);
+        }
+
+        .audio-card audio {
+            width: 100%;
+            max-width: none;
+            height: 38px;
+        }
+
+        /* ================================================= */
+        /* REPRODUCTOR DE MÚSICA FLOTANTE                     */
+        /* ================================================= */
+        .floating-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+            z-index: 1000;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .player-info {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--accent-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .floating-player audio {
+            max-width: 450px;
+            height: 38px;
+        }
+
+        @media (max-width: 600px) {
+            .floating-player {
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px;
+            }
+            .floating-player audio {
+                width: 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="boton-modo" class="btn-modo">Modo Oscuro</button>
+
+    <h1>αlpha</h1>
+
+    <section class="card-container" style="margin-top: 0;">
+        <div class="card-text" style="text-align: center;">
+            <h2>Bienvenido a αlpha</h2>
+            <p class="info-genero" style="border-left: none; background: transparent; padding: 0; text-align: center;">
+                <strong>αlpha</strong> es un espacio digital dedicado a la exploración, análisis y difusión de la música electrónica underground y experimental. El propósito de este proyecto es conectar a los entusiastas del sonido con una curatoría detallada de géneros vanguardistas, tracklists exclusivos, conceptos clave como los "IDs" y la historia detrás de las corrientes sonoras más innovadoras de la escena actual.
+            </p>
+        </div>
+    </section>
+
+    <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+            <div class="slider-slide">
+                <div class="slider-image-wrapper">
+                    <img src="imagenes_proyecto/James_Zabiela.jpg" alt="Slide 1">
+                </div>
+                <div class="slider-caption">
+                    <h3>Experimentación Sonora</h3>
+                    <p>Descubre los rincones más profundos de la música electrónica y géneros de vanguardia.</p>
+                </div>
+            </div>
+            <div class="slider-slide">
+                <div class="slider-image-wrapper">
+                    <img src="imagenes_proyecto/IDM.jpg" alt="Slide 2">
+                </div>
+                <div class="slider-caption">
+                    <h3>Cultura IDM</h3>
+                    <p>Un recorrido por los orígenes del Intelligent Dance Music y su evolución global.</p>
+                </div>
+            </div>
+            <div class="slider-slide">
+                <div class="slider-image-wrapper">
+                    <img src="imagenes_proyecto/futur_Festival.jpg" alt="Slide 3">
+                </div>
+                <div class="slider-caption">
+                    <h3>Festivales y Sets en Vivo</h3>
+                    <p>Mantente al día con los tracks inéditos, IDs y las colaboraciones más esperadas de la escena.</p>
+                </div>
+            </div>
+        </div>
+        <button class="slider-btn slider-btn-prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="slider-btn slider-btn-next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <section class="recommendations-section">
+        <h2>Recomendaciones de alpha</h2>
+        <div class="audio-grid">
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <span class="audio-icon">&#9835;</span>
+                    <p>Porter Robinson - music Vs Trip333</p>
+                </div>
+                <audio controls>
+                    <source src="musica/music-trip333.mp3" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <span class="audio-icon">&#9835;</span>
+                    <p>Four Tet - Human Voice</p>
+                </div>
+                <audio controls>
+                    <source src="musica/human-voice.mp3" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </section>
+
+    <div class="contenido-container">
+        <div class="contenedor-imagen">
+            <a href="https://open.spotify.com/playlist/2MUqraSrM1BAaL6e2HgdDQ?si=UIKpCEn9TQek_80jIk-8TQ" target="_blank">
+                <img src="imagenes_proyecto/Pixiv2.jpg" alt="Imagen 1">
+            </a>
+        </div>
+
+        <a href="Proyecto1.html" class="link-tracklist">———-»» My Tracklist ««———-</a>
+    </div>
+
+    <p>Contenido de αlpha</p>
+
+    <div class="lista-canciones-box">
+        <h3>αlpha</h3>
+        <ul class="lista-animada">
+            <li><span class="numero">01</span><span class="titulo">DOREY - Faith</span></li>
+            <li><span class="numero">02</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ - ʅ͡͡͡͡͡͡͡͡͡͡͡(ƟӨ)ʃ͡͡͡͡͡͡͡͡͡͡ ꐑ(ཀ ඊູ ఠీూ೧ູ࿃ूੂ✧✧✧✧✧✧ළඕั࿃ूੂ࿃ूੂ</span></li>
+            <li><span class="numero">03</span><span class="titulo">Barry Can't Swim - Late Night Tales: Continuous Mix</span></li>
+            <li><span class="numero">04</span><span class="titulo">Earlham Mystics - Truth</span></li>
+            <li><span class="numero">05</span><span class="titulo">Aphex Twin, Four Tet - Untitled|SAW2 CD1 Track1|-Four Tet Mix</span></li>
+            <li><span class="numero">06</span><span class="titulo">kors k - Nirvana - Camellia Binaryheaven Remix</span></li>
+            <li><span class="numero">07</span><span class="titulo">The Prototypes, Salute - Oxygen - Salute Remix</span></li>
+            <li><span class="numero">08</span><span class="titulo">Mr.Bill, eliderp, sophro, Virtual Riot - Pleasure Seeker Virtual Riot Remix</span></li>
+            <li><span class="numero">09</span><span class="titulo">Skrillex, Randomer, Blawan, Mc Dricka - Thistle</span></li>
+            <li><span class="numero">10</span><span class="titulo">Dj Marky, Pola & Bryson, Javeon - Trouble</span></li>
+            <li><span class="numero">11</span><span class="titulo">Effy, Mall Grab - iluv</span></li>
+            <li><span class="numero">12</span><span class="titulo">Parken & Hanson - Let Me Be</span></li>
+            <li><span class="numero">13</span><span class="titulo">aran - BB2ME</span></li>
+            <li><span class="numero">14</span><span class="titulo">Srav3R - Mutabilis</span></li>
+            <li><span class="numero">15</span><span class="titulo">Billon, Rationale - Release Me</span></li>
+            <li><span class="numero">16</span><span class="titulo">Adrian Hour - Everything</span></li>
+            <li><span class="numero">17</span><span class="titulo">Missionary - 不浄な白い鳥</span></li>
+            <li><span class="numero">18</span><span class="titulo">Leotrix - Age Of Aquarius</span></li>
+            <li><span class="numero">19</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ -  ҉      ͡ ͞ ҉    ͡ ͞ ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞   ͘ ͞⃝̕ ͢    ̛ ⃝    ̸ ̡  ͢⃝̧  ͡ ͡  ̀ ̧ ̢⃝͜   ҉  ͞ ͞ ⃝͞   ͘ ͞ ͡⃝  ⃝҉҈҉҈҉҈҉҈҉҈҉  ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞   ͘ ͞⃝̕ ͢    ̛ ⃝    ̸ ̡  ͢⃝̧  ͡ ͡  ̀ ̧ ̢⃝͜   ҉  ͞ ͞ ⃝͞   ͘ ͞ ͡⃝  ⃝҉҈҉҈҉҈҉҈҉҈҉  ͡ ͞ ͞ ͞ ҉ ҉      ͡ ͞ ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞ </span></li>
+            <li><span class="numero">20</span><span class="titulo">Percussions - March 2013</span></li>
+        </ul>
+    </div>
+
+    <div>
+        <h1>¿Qué es IDM?</h1>
+        <p class="info-genero"><b>Intelligent dance music</b> (IDM; en inglés: "música inteligente de baile") es un género de música electrónica que surgió a principios de los años 1990. Su creación estuvo influenciada por los avances de la música dance underground, tales como el Detroit techno y varios estilos breakbeat que estaban emergiendo en el Reino Unido en esa época. Estilísticamente, IDM tendía a basarse en la experimentación individualista, en lugar de adherirse a características musicales asociadas a géneros específicos de la música de baile. La gama de estilos post-techno que emergieron a principios de la década de 1990 fueron descritos de maneras diversas, como "art techno", "ambient techno", "intelligent techno", y "electronica". En los Estados Unidos, este último se utiliza a menudo como un término general para describir no solo a la música electrónica downtempo o no bailable, sino también la música electrónica de baile (EDM).</p>
+    </div>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Pixiv3.jpg" alt="Historia" loading="lazy">
+            <div class="card-text">
+                <h2>Historia</h2>
+                <p>En la época en que el fenómeno rave se desarrollaba en Inglaterra, un número de productores musicales de esa escena comenzaron a explorar el campo de la experimentación sonora. Muy influidos por el primer techno, especialmente su vertiente más onírica o reposada, y al mismo tiempo por el ambient, comenzaron a desarrollar un tipo de techno que no estaba destinado para la pista de baile sino para escuchar fuera del club.</p>
+                <p>Se cree que el término "IDM" se formó en Estados Unidos en 1993 a partir de la creación de la IDM list, una lista de correo que nació con el objetivo de comentar y discutir sobre un grupo de artistas de techno inglés que estaban surgiendo en la época. Especialmente todos aquellos asociados al sello discográfico Warp Records y a la serie de recopilatorios y discos Artificial Intelligence. El nombre puede rastrearse en grupos de discusión de Internet hasta 1991. Antes de la adopción del término eran comunes otros nombres como "braindance" (preferido por el sello Rephlex Records), "electronic listening music", "listening techno", "art techno" y "experimental techno".</p>
+            </div>
+        </div>
+    </section>
+
+    <h2 style="text-align: center; margin-top: 40px;">Otros géneros de música electrónica</h2>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Frankie1.webp" alt="House" loading="lazy">
+            <div class="card-text">
+                <h2>House</h2>
+                <p>El house es un género de música electrónica que se desarrolló en las ciudades de Chicago y Detroit a finales de los años 80. Se caracteriza por un ritmo constante de 120-130 BPM, con elementos de funk, soul y disco. El house se originó en clubes y fue popularizado por DJs y productores como Frankie Knuckles, Marshall Jefferson y Roni Size.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Hernan_Cattaneo.webp" alt="Progressive House" loading="lazy">
+            <div class="card-text">
+                <h2>Progressive House</h2>
+                <p>El progressive house es un subgénero del house que se caracteriza por su estructura melódica y su evolución sonora. Se desarrolló a partir de los años 90 y se ha vuelto muy popular en los clubes y festivales de música electrónica.</p>
+                <p>Ya hacia la década de 2010, el Progressive House era probablemente el género musical electrónico más popular de Europa y de partes de los Estados Unidos, y grandes productores llegaron al éxito como Avicii, Alesso, Hardwell, Nicky Romero, la Swedish House Mafia, Deadmau5, Afrojack, Hernán Cattáneo o unos años más tarde Martin Garrix.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/ASOT.jpg" alt="Trance" loading="lazy">
+            <div class="card-text">
+                <h2>Trance</h2>
+                <p>El trance es un género de música electrónica que se caracteriza por su ritmo constante de 130-150 BPM, con elementos de techno, house y música ambiental. El trance se originó en Alemania a principios de los años 90 y se ha vuelto muy popular en los clubes y festivales de música electrónica.</p>
+                <p>Algunos de los artistas más destacados del trance incluyen a Armin van Buuren, Tiësto, Paul van Dyk, Ferry Corsten y Above & Beyond.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Four_Tet.webp" alt="Música experimental" loading="lazy">
+            <div class="card-text">
+                <h2>Música experimental</h2>
+                <p>La música experimental es un género que se caracteriza por su enfoque innovador y su disposición para explorar nuevos sonidos y estructuras musicales. Este género a menudo combina elementos de diferentes estilos musicales y puede ser difícil de clasificar dentro de categorías tradicionales. Algunos artistas destacados de este género incluyen a Four Tet, Aphex Twin y Autechre.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Skrillex2.jpg" alt="Dubstep" loading="lazy">
+            <div class="card-text">
+                <h2>Dubstep</h2>
+                <p>El dubstep es un género de música electrónica que se caracteriza por su ritmo lento y sus bajos profundos. Se originó en el Reino Unido a principios de los años 90 y se ha vuelto muy popular en los clubes y festivales de música electrónica.</p>
+                <p>Algunos de los artistas más destacados del dubstep incluyen a Skrillex, Crankdat, Diplo y Nero.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Salute.jpg" alt="UK Garage" loading="lazy">
+            <div class="card-text">
+                <h2>UK Garage</h2>
+                <p>El UK Garage es un género de música electrónica que se caracteriza por su ritmo rápido y sus elementos de jazz y soul. Se originó en el Reino Unido a principios de los años 90 y se ha vuelto muy popular en los clubes y festivales de música electrónica.</p>
+                <p>Algunos de los artistas más destacados del UK Garage incluyen a Salute, DJ Fresh, Example, and Burial.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/TANO_C.png" alt="J Core" loading="lazy">
+            <div class="card-text">
+                <h2>J Core</h2>
+                <p>El término J-Core (Jコア) define a un subgénero japonés derivado del Techno Hardcore y Gabber asociado a productores y DJ japoneses que surgieron a partir de la década de 1990. El origen del J-Core está estrechamente influenciado por la subcultura otaku, siendo de sus características principales el incorporar elementos sonoros como muestras de audio tomadas de series de Anime, videojuegos, programas de televisión y comedias, su ritmo que oscila entre 150 BPM - 250 BPM.</p>
+                <p>Algunos de los artistas más destacados del J-Core incluyen a Srav3r, Nhato, REDALiCE, USAO, t+pazolite, aran, DJ Sharpnel, Camellia y DJ Genki.</p>
+            </div>
+        </div>
+    </section>
+
+    <a href="albumes.html" class="link-tracklist">———-»» Albumes y EPs ««———-</a>
+
+    <h2>¿Qué es un ID?</h2>
+    <p class="info-genero">En la música electrónica, un ID (abreviatura de Identification) es una canción o pista musical cuyo nombre, autor o ambos aún no se han revelado. Es un término muy común en los sets en vivo, festivales y transmisiones (como las de Tomorrowland o Boiler Room) cuando un DJ pincha una canción nueva y misteriosa.<br>El uso de la palabra proviene de la cultura radial y de los DJs, quienes marcaban los discos de vinilo de acetato que aún no tenían etiqueta oficial con la palabra "ID" (identificación pendiente) hasta que el sello discográfico publicara los datos reales.</p>
+
+    <h2>¿En qué situaciones se usa un ID?</h2>
+    <p class="info-genero">
+        <strong>Canciones inéditas (Unreleased):</strong> Los DJs y productores utilizan IDs para referirse a sus propios temas nuevos que aún no están terminados o que aún no tienen fecha de lanzamiento oficial.<br>
+        <strong>Prueba de reacción (Testing):</strong> Los artistas tocan canciones sin título en grandes festivales simplemente para evaluar cómo reacciona el público antes de decidir si lanzarlas o descartarlas.<br>
+        <strong>Misterio o colaboraciones:</strong> A veces es una estrategia para crear misterio, expectativa o para ocultar el nombre de una colaboración secreta que aún no está firmada con ninguna disquera.
+    </p>
+
+    <table class="tabla-eventos">
+        <thead>
+            <tr>
+                <th>DJ</th>
+                <th>IDs</th>
+                <th>Fecha</th>
+                <th>Colaboradores</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Skrillex</td>
+                <td>Sun Up</td>
+                <td>26 de Julio del 2023</td>
+                <td>Vigro Deep, Sarz, Virtual Riot, Burna Boy</td>
+            </tr>
+            <tr>
+                <td>Ninajirachi</td>
+                <td>WannaCry</td>
+                <td>11 de Abril del 2026</td>
+                <td>Porter Robinson</td>
+            </tr>
+            <tr>
+                <td>Four Tet</td>
+                <td>Human Voice</td>
+                <td>12 de Septiembre del 2025</td>
+                <td>Skrillex, Fred again..</td>
+            </tr>
+            <tr>
+                <td>KAYTRANADA</td>
+                <td>Intimidated (Salute Edit)</td>
+                <td>16 de Abril del 2022</td>
+                <td>Salute</td>
+            </tr>
+            <tr>
+                <td>Fred again..</td>
+                <td>Bipolar</td>
+                <td>11 de Octubre del 2024</td>
+                <td>Skrillex, Central Cee</td>
+            </tr>
+            <tr>
+                <td>MPH</td>
+                <td>Long Goodbye</td>
+                <td>26 de Mayo del 2026</td>
+                <td>Nathan Nicholson</td>
+            </tr>
+            <tr>
+                <td>Skrillex</td>
+                <td>Bunga</td>
+                <td>26 de Mayo del 2026</td>
+                <td>MPH</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ================================================= -->
+    <!-- REPRODUCTOR DE MÚSICA FLOTANTE                     -->
+    <!-- ================================================= -->
+    <div class="floating-player">
+        <div class="player-info">
+            <span id="player-title">αlpha Radio Session: Late Night Tales - Continuous Mix - Barry Can't Swim</span>
+        </div>
+        <audio id="audio-player" controls>
+            <source id="audio-source" src="musica/late-night-tales.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Script para el funcionamiento del Slider
+        let currentSlide = 0;
+        const sliderTrack = document.getElementById('sliderTrack');
+        const slides = document.querySelectorAll('.slider-slide');
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        // Script para la lista de reproducción automática del reproductor flotante
+        const playlist = [
+            { 
+                name: "αlpha Radio Session: Late Night Tales - Continuous Mix - Barry Can't Swim", 
+                src: "musica/late-night-tales.mp3" 
+            },
+            { 
+                name: "Balance 029 - Continuous Mix 1 - James Zabiela", 
+                src: "musica/balance-029.mp3" 
+            },
+            { 
+                name: "Lush FM Trance Fingers - Live at Alexandra Palace London, 24th May 2023 - Four Tet", 
+                src: "musica/lush-fm.mp3" 
+            }
+        ];
+
+        let currentTrackIndex = 0;
+        const audioPlayer = document.getElementById('audio-player');
+        const audioSource = document.getElementById('audio-source');
+        const playerTitle = document.getElementById('player-title');
+
+        function loadTrack(index) {
+            currentTrackIndex = index;
+            audioSource.src = playlist[currentTrackIndex].src;
+            playerTitle.textContent = playlist[currentTrackIndex].name;
+            audioPlayer.load();
+        }
+
+        // Detecta cuando termina una canción y pasa automáticamente a la siguiente
+        audioPlayer.addEventListener('ended', function() {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+            audioPlayer.play();
+        });
+    </script>
+</body>
+</html>

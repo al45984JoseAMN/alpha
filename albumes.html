@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbumes y EPs que recomiendo</title>
+    <style>
+       
+    :root {
+    /* Variables Modo Claro */
+    --bg-color: #f5f6fa;
+    --text-color: #2f3542;
+    --card-bg: #ffffff;
+    --border-color: #e4e7eb;
+    --accent-color: #c683f3;
+    --shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', sans-serif;
+            transition: 0.3s;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { color: var(--accent-color); font-size: 50px; text-align: center; }
+
+        /* Botón de Modo */
+        #btn-modo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        /* Banner Principal */
+        .banner {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Tarjetas de Álbumes */
+        .album-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .album-card:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-color);
+        }
+
+        .album-card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .album-info h2 { margin-top: 0; color: var(--accent-color); }
+
+        ul { list-style: none; padding: 0; font-size: 14px; }
+        ul li { padding: 4px 0; border-bottom: 1px solid rgba(128,128,128,0.1); }
+
+        @media (max-width: 768px) {
+            .album-card { flex-direction: column; text-align: center; }
+        }
+         /* Enlace inferior */
+        .link-index {
+            margin-top: 15px;
+            text-decoration: none;
+            color: rgb(217, 131, 243);
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btn-modo">Cambiar Modo</button>
+
+    <h1>Álbumes y EPs que recomiendo</h1>
+    <br>
+    <a href="index.html" class="link-index"><strong>Volver a αlpha</a>
+    <br>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/Quest For Fire.jpg" alt="Quest For Fire">
+        <div class="album-info">
+            <h2>Quest For Fire</h2>
+            <p><strong>Artista:</strong> Skrillex</p>
+            <ul>
+                <li>Leave Me Like This</li>
+                <li>Ratata</li>
+                <li>Tears</li>
+                <li>Rumble</li>
+                <li>Butterflies</li>
+                <li>Inhale Exhale</li>
+                <li>A Street I Know</li>
+                <li>XENA</li>
+                <li>TOO BIZARRE (juked)</li>
+                <li>Hydrate</li>
+                <li>Warped Tour 05 with pete WENTZ</li>
+                <li>Goop Space</li>
+                <li>Supersonic (my existence)</li>
+                <li>Hazel Theme</li>
+                <li>Still Here (with the ones that I came with)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/nurture.jpg" alt="Nurture">
+        <div class="album-info">
+            <h2>Nurture</h2>
+            <p><strong>Artista:</strong> Porter Robinson</p>
+            <ul>
+            <li>Lifelike</li>
+            <li>Look at the Sky</li>
+            <li>Get Your Wish</li>
+            <li>Wind Tempos</li>
+            <li>Musician</li>
+            <li>do-re-mi-fa-so-la-ti-do</li>
+            <li>Mother</li>
+            <li>dullscythe</li>
+            <li>Sweet Time</li>
+            <li>Mirror</li>
+            <li>Something Comforting</li>
+            <li>Blossom</li>
+            <li>Unfold</li>
+            <li>Trying to Feel Alive</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/Seven_Lies.jpg" alt="Seven Lies">
+        <div class="album-info">
+            <h2>Seven Lies</h2>
+            <p><strong>Artista:</strong> DjRUM</p>
+            <ul>
+            <li>Obssesion</li>
+            <li>Comos Los Cerdos</li>
+            <li>Dam</li>
+            <li>Arcana-Do I Need You</li>
+            <li>Lies</li>
+            <li>Honey</li>
+            <li>Honey</li>
+            <li>Arcana-Coda</li>
+            <li>Anchors</li>
+            <li>Thank You</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/Someone_close.jpg" alt="Seven Lies">
+        <div class="album-info">
+            <h2>Someone Close</h2>
+            <p><strong>EP</strong></p>
+            <p><strong>Artista:</strong> Floating Points</p>
+            <ul>
+            <li>Someone Close</li>
+            <li>Vocoder</li>
+            <li>Problems</li>
+            <li>Grammar</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/Three.jpg" alt="Three+">
+        <div class="album-info">
+            <h2>Three+</h2>
+            <p><strong>Artista:</strong> Four Tet</p>
+            <ul>
+            <li>Loved</li>
+            <li>Gliding Through Everthing</li>
+            <li>Storm Crystals</li>
+            <li>Daydream Repeat</li>
+            <li>Skater</li>
+            <li>31 Bloom</li>
+            <li>So Blue</li>
+            <li>Three Drums</li>
+            <li>I"ll Miss the System Here</li>
+            <li>Scythe Master</li>
+            <li>Mango Feedback</li>
+            <li>Watersynth</li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/Paroxysm.jpg" alt="Paroxysm">
+        <div class="album-info">
+            <h2>paroxysm</h2>
+            <p><strong>Artista:</strong> Camellia</p>
+            <ul>
+            <li>Ring</li>
+            <li>Nuclear drive</li>
+            <li>[e-]</li>
+            <li>Mithrill</li>
+            <li>Fastest Crash</li>
+            <li>paroxysm</li>
+            <li>bug collection</li>
+            <li>#include</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/mm_deep.jpg" alt="Mixmash Deep">
+        <div class="album-info">
+            <h2>Mixmash Deep Selection</h2>
+            <p><strong>EP</strong></p>
+            <p><strong>Artista:</strong> LEFTI, DBN, Oni Sky, Tom Enzy</p>
+            <ul>
+            <li>Castle</li>
+            <li>Luv Light</li>
+            <li>You're Perfect</li>
+            <li>Luv Light - Extended Mix</li>
+            <li>You're Perfect - Extended Mix</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/Galaxy_Burst.jpg" alt="GALAXY BURST">
+        <div class="album-info">
+            <h2>GALAXY BURST</h2>
+            <p><strong>Artista:</strong> Camellia</p>
+            <ul>
+            <li>Introduction - Akashic Records' Data Collapse</li>
+            <li>Dyscontrolled Galaxy - "Apoptosis" Long Ver</li>
+            <li>Συζυγία (Syzygía)</li>
+            <li>overcomplexification ("Quaternion" Long Ver.)</li>
+            <li>Sugary</li>
+            <li>{albus} ("Silver" Long Ver.)</li>
+            <li>Epimerization</li>
+            <li>EMPIRE OF FLAME ("LábRys" Long Ver.)</li>
+            <li>You Are F**king Noob!!!!</li>
+            <li>べィスドロップ・フリークス (2018 "Redrop" Ver.)</li>
+            <li>Quicksand</li>
+            <li>Chirality ("Dissymmetric" Long Ver.)</li>
+            <li>ロウスタイル・ボム</li>
+            <li>Blastix Riotz ("Fullblast" Long Ver.)</li>
+            <li>GHOST-NOVA</li>
+            <li>Bangin' Burst ("Outburst" Long Ver.)</li>
+            <li>GALAXY BURST</li>
+            <li>GALAXY BURST (lapix Remix)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/true_magic_D.jpg" alt="TRUE MAGIC DELUXE">
+        <div class="album-info">
+            <h2>TRUE MAGIC DELUXE</h2>
+            <p><strong>Artista:</strong> Salute</p>
+            <ul>
+            <li>start</li>
+            <li>saving flowers</li>
+            <li>reason</li>
+            <li>lift off!</li>
+            <li>maybe it's u</li>
+            <li>go!</li>
+            <li>true magic, bomus round</li>
+            <li>one of those nights</li>
+            <li>move faster...</li>
+            <li>system</li>
+            <li>softly</li>
+            <li>luv stuck</li>
+            <li>perfect</li>
+            <li>drive</li>
+            </ul>
+            <p><strong>Disco 2</strong></p>
+            <ul>
+            <li>more soul</li>
+            <li>comfort control</li>
+            <li>gbesoke</li>
+            <li>heaven in your arms</li>
+            <li>feel the same x softly - TRUE VISION VERSION</li>
+            <li>perfect (Prototype)</li>
+            <li>saving flowers - Hudson Mohawke Remix</li>
+            <li>saving flowers - Flux Pavilion Remix </li>
+            <li>system - Karma Kid Remix</li>
+            <li>luv stuck - Dismantle Remix</li>
+            <li>perfect - UNIIQU3 Remix</li>
+            <li>go! - George Daniel Remix</li>
+            <li>go! - George Daniel Gloaming Remix</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="album-card">
+        <img src="imagenes_proyecto/balance_029.jpg" alt="Balance 029">
+        <div class="album-info">
+            <h2>Balance 029</h2>
+            <p><strong>Artista:</strong> James Zabiela</p>
+            <ul>
+            <li></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="album-card"> 
+        <a href="https://virtualself.co/" target="_blank"><img src="imagenes_proyecto/vistual_self.jpg" alt="Virtual Self"></a>
+        <div class="album-info">
+            <h2>Virtual Self</h2>
+            <p><strong>EP</strong></p>
+            <p><strong>Artista:</strong> Virtual Self</p>
+            <ul>
+            <li>Particle Arts</li>
+            <li>Ghost Voices</li>
+            <li>a.i.ngel (Become God)</li>
+            <li>Key</li>
+            <li>EON BREAK</li>
+            </ul>
+        </div>
+    </div>
+
+    <a href="index.html" class="link-index"><strong>Volver a αlpha</a>
+
+        <!--script del modo oscuro-->
+    <script>
+        const btn = document.getElementById('btn-modo');
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('tema', document.body.classList.contains('dark-mode') ? 'oscuro' : 'claro');
+        });
+
+        if(localStorage.getItem('tema') === 'oscuro') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+   
+</body>
+</html>

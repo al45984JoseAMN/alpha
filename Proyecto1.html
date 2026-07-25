@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tracklist</title>
+    
+    <style type="text/css">
+        /* --- 1. VARIABLES Y BASE DEL DISEÑO --- */
+        :root {
+            --bg-color: #f5f6fa;
+            --text-color: #2f3542;
+            --accent-color: #33e0ff;
+            --card-bg: #ffffff;
+            --border-color: #e4e7eb;
+        }
+
+        /* Variables automáticas para el Modo Oscuro */
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* --- 2. CONTENEDOR PRINCIPAL --- */
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* --- 3. TIPOGRAFÍA Y JERARQUÍA --- */
+        h1 {
+            text-align: center;
+            font-size: 45px;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 24px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 28px;
+            margin-top: 50px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 40px 0;
+        }
+
+        /* --- 4. MEJORA DE LAS LISTAS --- */
+        ol {
+            padding-left: 0;
+            list-style: none; /* Quitamos los números planos */
+            counter-reset: music-counter; /* Creamos un contador personalizado */
+        }
+
+        ol li {
+            background-color: var(--card-bg);
+            margin-bottom: 10px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            transition: 0.3s ease;
+            counter-increment: music-counter;
+        }
+
+        /* Generador de números estilizados */
+        ol li::before {
+            content: counter(music-counter);
+            font-weight: bold;
+            color: var(--accent-color);
+            width: 30px;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Animación hover en listas */
+        ol li:hover {
+            color: var(--accent-color);
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(51, 224, 255, 0.2);
+        }
+
+        /* --- 5. COMPONENTES: BOTÓN MODO OSCURO --- */
+        .btn-modo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 18px;
+            background-color: #2f3542;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .btn-modo {
+            background-color: #ffffff;
+            color: #121212;
+        }
+
+        /* --- 6. COMPONENTES: VISUALIZADOR --- */
+        .visualizer {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 60px;
+            gap: 6px;
+            margin: 20px auto 40px auto;
+        }
+
+        .visualizer span {
+            width: 8px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 4px;
+            animation: bounce 1s infinite ease-in-out;
+        }
+
+        .visualizer span:nth-child(2) { animation-delay: 0.2s; }
+        .visualizer span:nth-child(3) { animation-delay: 0.4s; }
+        .visualizer span:nth-child(4) { animation-delay: 0.6s; }
+        .visualizer span:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes bounce {
+            0%, 100% { height: 15px; }
+            50% { height: 50px; }
+        }
+
+        /* --- 7. SECCIÓN INFO CONTAINER --- */
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 40px;
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        @media (min-width: 768px) {
+            .info-container {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .info-container img {
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+            border-radius: 15px;
+            transition: 0.5s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .info-container img:hover {
+            transform: scale(1.03);
+            box-shadow: 0px 0px 20px rgba(51, 224, 255, 0.4);
+        }
+
+        .texto-lado {
+            flex: 1;
+        }
+
+        .texto-lado h2 {
+            margin-top: 0;
+        }
+
+        /* --- 8. SCROLLBAR --- */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6bcaed;
+            border-radius: 10px;
+        }
+
+        /* --- 9. DISEÑO DE LA TABLA DE EVENTOS --- */
+        .tabla-eventos {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .tabla-eventos th, .tabla-eventos td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tabla-eventos th {
+            background-color: var(--border-color);
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .tabla-eventos tr:hover {
+            background-color: rgba(51, 224, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <button id="boton-modo" class="btn-modo">Cambiar a modo oscuro</button>
+
+    <div class="container">
+        
+        <h1>My Tracklist</h1>
+        
+        <div class="visualizer">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+         <a href="index.html">Volver a αlpha</a>
+
+        <h2>Mi Top 10 Canciones</h2>
+        <ol>
+            <li>Butterflies - Skrillex, Starrah, Four Tet</li>
+            <li>The Healing - James Zabiela</li>
+            <li>Parallel4 - Four Tet</li>
+            <li>Paroxysm - Camellia</li>
+            <li>Try Again - USAO</li>
+            <li>Blessings (KETTAMA Remix) - Calvin Harris, Clementine Douglas, KETTAMA</li>
+            <li>Strong - Romy, Fred Again..</li>
+            <li>Shelter - Porter Robinson, Madeon</li>
+            <li>Ghost Voices - Virtual Self</li>
+            <li>BADO - Shimza, CamelPhat, Idd Azis</li>
+        </ol>
+
+        <h2>Canciones que Recomiendo</h2>
+        <ol>
+            <li>Inner Wars - Andot</li>
+            <li>Joy - Salute</li>
+            <li>Lies - DjRUM</li>
+            <li>Do You Feel Me - NY's Finest</li>
+            <li>Ferrari - James Hype</li>
+        </ol>
+
+        <h2>Disqueras</h2>
+        <ol>
+            <li>OWSLA</li>
+            <li>Toolroom</li>
+            <li>Armada Records</li>
+            <li>Mixmash Records</li>
+            <li>Spinin Records</li>
+            <li>Monstercat</li>
+            <li>Dawn Patrol</li>
+            <li>Disciple</li>
+            <li>NCS</li>
+            <li>Phoenix Music</li>
+            <li>STMPD rcrds</li>
+        </ol>
+
+        <h3>100 Canciones</h3>
+        
+        <iframe
+            width="100%"
+            height="166"
+            scrolling="no"
+            frameborder="no"
+            allow="autoplay"
+            src="https://open.spotify.com/embed/playlist/0YKcMcNNQa4WG95CTceaKD"
+            style="border-radius: 12px; margin-bottom: 20px;">
+        </iframe>
+
+        <ol>
+            <li>Luv Light - DBN, Oni Sky</li>
+            <li>Blame - James Zabiela</li>
+            <li>Skater - Four Tet</li>
+            <li>Seashore on the moon - Camellia, Nanahira</li>
+            <li>Trust (Plastik Funk Remix) - Tank & Cheetah, DBN, The Rise</li>
+            <li>Picket Lines - Bonetti</li>
+            <li>Better - Mija, Vindata</li>
+            <li>Selecta - Skrillex, BEAM</li>
+            <li>Trip - Boys Noize, Skream</li>
+            <li>HOT DRUM - JOYRIDE</li>
+            <li>Crazy - Pink Panda</li>
+            <li>Wait For It - Salute</li>
+            <li>Spectrum - Zedd, Matthew Koma</li>
+            <li>Silhouettes - Avicii</li>
+            <li>Waves - BLOND:ISH, Grace Tither</li>
+            <li>Flames (Tepr Remix) - David Guetta, Sia, Tepr</li>
+            <li>Happy Accidents - Outwild, Inukshuk</li>
+            <li>Dust To Gold - Pyrodox, Ina</li>
+            <li>Holding On - Disclosure, Gregory Porter</li>
+            <li>Stargazing - Just A Gent, CARLIE, Kiss the Moon, Stutters</li>
+            <li>Mazy Metroplex - aran</li>
+            <li>Stay Different - Minders, Santiago Luna, Carlos Luna</li>
+            <li>Something Comforting - Porter Robinson</li>
+            <li>Problems - Floating Points</li>
+            <li>Music - underscores</li>
+            <li>Flashback - ARForest</li>
+            <li>Shizuku - Yamato, Maydenfield</li>
+            <li>Reaction (Osu Edit) - James Landino, Slyleaf</li>
+            <li>Squall - Srav3R</li>
+            <li>Compromise - Nico de Andrea, hazel</li>
+            <li>I Love You So - Andrea Oliva, Moeaike</li>
+            <li>Midnight In Peckham - Chaos In The CBD, Issac Aesili</li>
+            <li>Hello to the your first video game - Camellia</li>
+            <li>Hold Me - Orjan Nilsen</li>
+            <li>Summer 91 (Looking Back) - Noizu</li>
+            <li>High - HRRTZ, S.MICHAUD</li>
+            <li>Feelings - farfetch'd, Tobtok</li>
+            <li>Flamingo Tripper - Edmondson</li>
+            <li>After Dawn - Letherette</li>
+            <li>Disconap - Andy Bianchini, Rivas(BR)</li>
+            <li>Your Body - Illyus Barrientos, Daniel De Bourg</li>
+            <li>Fly - KC Lights, Welt</li>
+            <li>adore u - Fred again.., Obongjayar</li>
+            <li>Feel The Friction - Sam Alfred</li>
+            <li>Electricity (Salute Remix) - Hikaru Utada, Salute</li>
+            <li>Gunk - Overmono</li>
+            <li>TAKA - Ahadadream, Priya Ragu, Skrillex</li>
+            <li>Moving On - Alix Perez, Liam Bailey</li>
+            <li>New Love - Ruth Royal, Makoto</li>
+            <li>Lost in the mist - aran, Tia</li>
+            <li>Easy - Mat Zo, Porter Robinson</li>
+            <li>Back to Pangea pt.II Jazzapella Version - Freddy da Stupid</li>
+            <li>Show Me Love - Laidback Luke, Steve Angello, Robin S</li>
+            <li>Afraid - Aevion</li>
+            <li>Douha (Mali Mali) - Disclosure, Fatoumata Diawara</li>
+            <li>My World - Disco Fries, Dee Roze</li>
+            <li>Forever And A Day (Diplo Remix) - LP Giobbi, Caroline Byrne, Diplo</li>
+            <li>Say My Name - ARTY</li>
+            <li>No Fear No More - Madeon, EARTHGANG</li>
+            <li>Like Fire - Madison Mars, Nevve</li>
+            <li>Just Doin' Me - MOONBOY, Z3LLA</li>
+            <li>17 - MK</li>
+            <li>Burn Dem Bridges - Skin On Skin</li>
+            <li>Full On (KILIMANJARO Remix) - Hak Baker, KILIMANJARO</li>
+            <li>MAGNET - Gryffin, Disco Lines, MAX</li>
+            <li>JOY (How We End Up Here) - Joy Anonymous</li>
+            <li>Waves (Vocal Mix) - Kryder, Erick Morillo, Bella Hunter</li>
+            <li>In My Dreams - Four Tet, Ellie Goulding</li>
+            <li>Baby Slow Down - Ferreck Dawn, Franky Rizardo, Torica</li>
+            <li>PARANOIA - Borgore</li>
+            <li>You Thought - Mall Grab</li>
+            <li>La Festa - KO3, aran</li>
+            <li>HIGHER - REDALiCE</li>
+            <li>With You - Virtual Riot</li>
+            <li>Supersonic - Rob Gasser</li>
+            <li>Invisible (R!OT Remix) - Christine Grimmie, R!OT</li>
+            <li>Missing (Todd Terry Club Mix) - Everything But The Girl, Todd Terry</li>
+            <li>Neverender (Rampa Remix) - Justice, Tame Impala, Rampa, Keinemusik</li>
+            <li>Waited All Night (Solomun Remix v11) - Jamie xx, Solomun, Romy, Oliver Sim</li>
+            <li>Alone - MPH, Carla Monroe</li>
+            <li>London To Buenos Aires - Paul Oakenfold, Hernan Cattaneo</li>
+            <li>Optimism - Dosem</li>
+            <li>Mama Africa - Ilan Bluestone, El Waves</li>
+            <li>Lucifero - Wata Igarashi</li>
+            <li>Szikra - Kornel Kovacs</li>
+            <li>Skyline (Madraas Edit Remix) - HUNZED, Madraas</li>
+            <li>Delete - Ninajirachi</li>
+            <li>Ella - Aldonna</li>
+            <li>Falling van Buuren - TRANCEMAN2000</li>
+            <li>Kiki - Crusy</li>
+            <li>Holding Back - Azzecca</li>
+            <li>Feel My Needs - WEISS</li>
+            <li>Why Don't We Go Somewhere - Friend Within</li>
+            <li>Stay (Don't Go Away) - David Guetta, RAYE</li>
+            <li>Black Ice - Subtronics, Rezz</li>
+            <li>Shades Of Gray - Oliver Heldens, Shaun Frank, Delaney Jane</li>
+            <li>Quintal - Mlive, Gogoia, Morgado, Gabriela Paes</li>
+            <li>Midi Night Metropolitan Highway Zwei - Takahiro Aoki, Invasion Of Chaos, ANKI</li>
+            <li>Fly Away XTC - KETTAMA</li>
+            <li>Newspapers for Magicans - Camellia</li>
+        </ol>
+
+        <hr>
+
+        <div class="info-container">
+            <a href="https://open.spotify.com/playlist/0YKcMcNNQa4WG95CTceaKD" target="_blank">
+                <img src="imagenes_proyecto/Pixiv1.jpg" alt="Playlist Cover">
+            </a>
+            <div class="texto-lado">
+                <h2>My Playlist</h2>
+                <p>Esta playlist contiene algunas de mis canciones favoritas de EDM, House, Dubstep, Drum & Bass y Trance.</p>
+                <p><strong>Artistas destacados:</strong> Skrillex, Porter Robinson, Fred again.., Camellia, Four Tet y muchos más.</p>
+                <p><strong>Géneros:</strong> Future Bass, Tech House, Progressive House, UK Garage, Hard Dance y Electronic.</p>
+            </div>
+        </div>
+
+        <br>
+        <h2>αlpha</h2>
+        <p>En <a href="index.html">Alpha</a> se muestran todas las canciones que aún no han sido lanzadas o son difíciles de encontrar, además de mostrar información adicional sobre cada subgénero de la música electrónica.</p>
+
+        <h2 style="margin-top: 40px;">Eventos y Presentaciones de DJs</h2>
+        <table class="tabla-eventos">
+            <thead>
+                <tr>
+                    <th>DJ</th>
+                    <th>Evento</th>
+                    <th>Line up</th>
+                    <th>Ubicación</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Solomun</td>
+                    <td>Solomun</td>
+                    <td>Solomun, BLOND:ISH, Cabizbajo</td>
+                    <td>Parque Fundidora, Monterrey, NL</td>
+                    <td>2025-02-22</td>
+                </tr>
+                <tr>
+                    <td>Porter Robinson</td>
+                    <td>Latin America Dj Sets Minitour</td>
+                    <td>Porter Robinson</td>
+                    <td>Showcenter Complex, San Pedro, NL</td>
+                    <td>2026-05-08</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div> 
+
+    <script src="script.js"></script>
+</body>
+</html>
