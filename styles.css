@@ -1,0 +1,540 @@
+/* ================================================= */
+/* VARIABLES DEL MODO OSCURO                         */
+/* ================================================= */
+:root {
+    --bg-color: #f5f6fa;
+    --text-color: #2f3542;
+    --card-bg: #ffffff;
+    --border-color: #e4e7eb;
+    --accent-color: #f383db;
+    --shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --card-bg: #1e1e1e;
+    --border-color: #333333;
+    --shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* ================================================= */
+/* ESTILOS GENERALES DE LA PÁGINA                     */
+/* ================================================= */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding-bottom: 90px; /* Espacio para que el reproductor flotante no tape contenido */
+}
+
+h1 {
+    text-align: center;
+    color: var(--accent-color);
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: var(--text-color);
+}
+
+/* ================================================= */
+/* CONTENEDOR MULTIMEDIA PRINCIPAL                   */
+/* ================================================= */
+.contenido-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    max-width: 520px;
+    width: 100%;
+}
+
+.track {
+    text-align: center;
+    width: 100%;
+}
+
+.track p {
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+audio {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* ================================================= */
+/* IMÁGENES Y EFECTOS HOVER                          */
+/* ================================================= */
+.contenedor-imagen {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+img {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+img:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 0px 20px rgba(226, 37, 147, 0.5);
+}
+
+/* ================================================= */
+/* ENLACES Y BOTÓN MODO OSCURO                       */
+/* ================================================= */
+.link-tracklist {
+    margin-top: 15px;
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.btn-modo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+body.dark-mode .btn-modo {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+/* ================================================= */
+/* TARJETAS                                          */
+/* ================================================= */
+.card-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 30px auto;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.card-content img {
+    width: 35%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.card-text {
+    flex: 1;
+}
+
+/* Responsive móviles para tarjetas */
+@media (max-width: 768px) {
+    .card-content {
+        flex-direction: column;
+    }
+    .card-content img {
+        width: 100%;
+    }
+}
+
+/* ================================================= */
+/* LISTA ANIMADA DE CANCIONES                        */
+/* ================================================= */
+.lista-canciones-box {
+    width: 100%;
+    max-width: 450px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.lista-canciones-box h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.lista-animada {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-animada li {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background-color: rgba(243, 131, 219, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: aparecerLista 0.6s ease forwards;
+    opacity: 0;
+}
+
+body.dark-mode .lista-animada li {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.lista-animada li:hover {
+    background-color: rgba(243, 131, 219, 0.15);
+    border-left-color: var(--accent-color);
+    transform: translateX(8px);
+}
+
+body.dark-mode .lista-animada li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lista-animada .numero {
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.lista-animada .titulo {
+    font-size: 14px;
+    color: var(--text-color);
+    line-height: 1.4;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ================================================= */
+/* CAJAS DE INFORMACIÓN                              */
+/* ================================================= */
+.info-genero {
+    width: 100%;
+    max-width: 800px;
+    text-align: justify;
+    line-height: 1.7;
+    font-size: 14.5px;
+    background-color: rgba(243, 131, 219, 0.03);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 3px solid rgba(243, 131, 219, 0.3);
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+body.dark-mode .info-genero {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ================================================= */
+/* TABLA DE EVENTOS                                  */
+/* ================================================= */
+.tabla-eventos {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tabla-eventos th, .tabla-eventos td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tabla-eventos th {
+    background-color: var(--border-color);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.tabla-eventos tr:hover {
+    background-color: rgba(255, 51, 245, 0.178);
+}
+
+/* ================================================= */
+/* SLIDER / CARRUSEL                                 */
+/* ================================================= */
+.slider-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-image-wrapper {
+    width: 100%;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #000; 
+}
+
+.slider-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center; 
+    border-radius: 0;
+    max-width: none;
+}
+
+.slider-caption {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-color);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.slider-caption h3 {
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.slider-caption p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.slider-btn {
+    position: absolute;
+    top: calc(380px / 2); 
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.slider-btn:hover {
+    background-color: var(--accent-color);
+}
+
+.slider-btn-prev {
+    left: 15px;
+}
+
+.slider-btn-next {
+    right: 15px;
+}
+
+/* ================================================= */
+/* ANIMACIONES PARA LA LISTA DE CANCIONES            */
+/* ================================================= */
+@keyframes aparecerLista {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lista-animada li:nth-child(1) { animation-delay: 0.1s; }
+.lista-animada li:nth-child(2) { animation-delay: 0.2s; }
+.lista-animada li:nth-child(3) { animation-delay: 0.3s; }
+.lista-animada li:nth-child(4) { animation-delay: 0.4s; }
+.lista-animada li:nth-child(5) { animation-delay: 0.5s; }
+.lista-animada li:nth-child(6) { animation-delay: 0.6s; }
+.lista-animada li:nth-child(7) { animation-delay: 0.7s; }
+.lista-animada li:nth-child(8) { animation-delay: 0.8s; }
+.lista-animada li:nth-child(9) { animation-delay: 0.9s; }
+.lista-animada li:nth-child(10) { animation-delay: 1.0s; }
+.lista-animada li:nth-child(11) { animation-delay: 1.1s; }
+.lista-animada li:nth-child(12) { animation-delay: 1.2s; }
+.lista-animada li:nth-child(13) { animation-delay: 1.3s; }
+.lista-animada li:nth-child(14) { animation-delay: 1.4s; }
+.lista-animada li:nth-child(15) { animation-delay: 1.5s; }
+.lista-animada li:nth-child(16) { animation-delay: 1.6s; }
+.lista-animada li:nth-child(17) { animation-delay: 1.7s; }
+.lista-animada li:nth-child(18) { animation-delay: 1.8s; }
+.lista-animada li:nth-child(19) { animation-delay: 1.9s; }
+.lista-animada li:nth-child(20) { animation-delay: 2.0s; }
+
+/* ================================================= */
+/* APARTADO: RECOMENDACIONES (AUDIOS)                */
+/* ================================================= */
+.recommendations-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+}
+
+.recommendations-section h2 {
+    text-align: center;
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 26px;
+}
+
+.audio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.audio-card {
+    background-color: rgba(243, 131, 219, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .audio-card {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.audio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(243, 131, 219, 0.15);
+    border-color: var(--accent-color);
+}
+
+.audio-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.audio-icon {
+    color: var(--accent-color);
+    font-size: 18px;
+}
+
+.audio-card-header p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+.audio-card audio {
+    width: 100%;
+    max-width: none;
+    height: 38px;
+}
+
+/* ================================================= */
+/* REPRODUCTOR DE MÚSICA FLOTANTE                    */
+/* ================================================= */
+.floating-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+    z-index: 1000;
+    box-sizing: border-box;
+    gap: 15px;
+}
+
+.player-info {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--accent-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.floating-player audio {
+    max-width: 450px;
+    height: 38px;
+}
+
+@media (max-width: 600px) {
+    .floating-player {
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+    }
+    .floating-player audio {
+        width: 100%;
+        max-width: none;
+    }
+}
