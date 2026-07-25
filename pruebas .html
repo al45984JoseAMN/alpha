@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>αlpha - Música Electrónica Underground</title>
+    <!-- Vinculación del CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style type="text/css">
+        /* --- ESTILOS PARA LA SECCIÓN ACTUALIZADA EN ALPHA --- */
+        .seccion-alpha-moodboard {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 40px auto;
+            max-width: 900px;
+            background-color: var(--card-bg, #1e1e1e);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color, #333333);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        @media (min-width: 768px) {
+            .seccion-alpha-moodboard {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .alpha-moodboard-banner {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .alpha-moodboard-banner img {
+            width: 100%;
+            height: auto;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            display: block;
+        }
+
+        .alpha-moodboard-banner img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(51, 224, 255, 0.3);
+        }
+
+        .alpha-manifiesto-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .alpha-manifiesto-card h2 {
+            margin-top: 0;
+            font-size: 22px;
+            color: var(--accent-color, #33e0ff);
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .alpha-manifiesto-card p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .alpha-manifiesto-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .alpha-manifiesto-tags span {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--accent-color, #33e0ff);
+            background-color: rgba(51, 224, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(51, 224, 255, 0.2);
+        }
+
+        .btn-saber-mas {
+            display: inline-block;
+            align-self: flex-start;
+            background-color: transparent;
+            color: var(--accent-color, #33e0ff);
+            border: 1px solid var(--accent-color, #33e0ff);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-saber-mas:hover {
+            background-color: var(--accent-color, #33e0ff);
+            color: #121212;
+            box-shadow: 0 0 15px rgba(51, 224, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <button id="boton-modo" class="btn-modo">Modo Oscuro</button>
+
+    <h1>αlpha</h1>
+
+    <section class="card-container" style="margin-top: 0;">
+        <div class="card-text" style="text-align: center;">
+            <h2>Bienvenido a αlpha</h2>
+            <p class="info-genero" style="border-left: none; background: transparent; padding: 0; text-align: center;">
+                <strong>αlpha</strong> es un espacio digital dedicado a la exploración, análisis y difusión de la música electrónica underground y experimental. El propósito de este proyecto es conectar a los entusiastas del sonido con una curatoría detallada de géneros vanguardistas, tracklists exclusivos, conceptos clave como los "IDs" y la historia detrás de las corrientes sonoras más innovadoras de la escena actual.
+            </p>
+        </div>
+    </section>
+
+    <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+            <div class="slider-slide">
+                <div class="slider-image-wrapper">
+                    <img src="imagenes_proyecto/James_Zabiela.jpg" alt="Slide 1">
+                </div>
+                <div class="slider-caption">
+                    <h3>Experimentación Sonora</h3>
+                    <p>Descubre los rincones más profundos de la música electrónica y géneros de vanguardia.</p>
+                </div>
+            </div>
+            <div class="slider-slide">
+                <div class="slider-image-wrapper">
+                    <img src="imagenes_proyecto/IDM.jpg" alt="Slide 2">
+                </div>
+                <div class="slider-caption">
+                    <h3>Cultura IDM</h3>
+                    <p>Un recorrido por los orígenes del Intelligent Dance Music y su evolución global.</p>
+                </div>
+            </div>
+            <div class="slider-slide">
+                <div class="slider-image-wrapper">
+                    <img src="imagenes_proyecto/futur_Festival.jpg" alt="Slide 3">
+                </div>
+                <div class="slider-caption">
+                    <h3>Festivales y Sets en Vivo</h3>
+                    <p>Mantente al día con los tracks inéditos, IDs y las colaboraciones más esperadas de la escena.</p>
+                </div>
+            </div>
+        </div>
+        <button class="slider-btn slider-btn-prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="slider-btn slider-btn-next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <section class="recommendations-section">
+        <h2>Recomendaciones de alpha</h2>
+        <div class="audio-grid">
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <span class="audio-icon">&#9835;</span>
+                    <p>Porter Robinson - music Vs Trip333</p>
+                </div>
+                <audio controls>
+                    <source src="musica/music-trip333.mp3" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <span class="audio-icon">&#9835;</span>
+                    <p>Four Tet - Human Voice</p>
+                </div>
+                <audio controls>
+                    <source src="musica/human-voice.mp3" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN ACTUALIZADA (PLAYLIST + INFO DE PERSONAJE + SABER MÁS) -->
+    <div class="seccion-alpha-moodboard">
+        <div class="alpha-moodboard-banner">
+            <a href="https://open.spotify.com/playlist/2MUqraSrM1BAaL6e2HgdDQ?si=UIKpCEn9TQek_80jIk-8TQ" target="_blank">
+                <img src="imagenes_proyecto/Pixiv2.jpg" alt="Alpha Sound Archive">
+            </a>
+        </div>
+        
+        <div class="alpha-manifiesto-card">
+            <h2>// SOUND ARCHIVE & ARTWORK</h2>
+            <p><strong>Curaduría de la Playlist:</strong> Una selección enfocada en texturas electrónicas profundas, frecuencias experimentales y ritmos que definen la vanguardia underground.</p>
+            <p><strong>Sobre el Personaje:</strong> Ilustración inspirada en la estética visual de la subcultura y géneros melódicos/alternativos, reflejando la atmósfera melancólica y futurista que acompaña los beats electrónicos.</p>
+            <div class="alpha-manifiesto-tags">
+                <span>#Experimental</span>
+                <span>#IDM</span>
+                <span>#VisualArt</span>
+            </div>
+            <!-- Cambia "personaje.html" por la página de destino real que prefieras -->
+            <a href="personaje.html" class="btn-saber-mas">Saber más ———»</a>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0;">
+        <a href="Proyecto1.html" class="link-tracklist">———-»» My Tracklist ««———-</a>
+    </div>
+
+    <p style="text-align: center;">Contenido de αlpha</p>
+
+    <div class="lista-canciones-box">
+        <h3>αlpha</h3>
+        <ul class="lista-animada">
+            <li><span class="numero">01</span><span class="titulo">DOREY - Faith</span></li>
+            <li><span class="numero">02</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ - ʅ͡͡͡͡͡͡͡͡͡͡͡(ƟӨ)ʃ͡͡͡͡͡͡͡͡͡͡ ꐑ(ཀ ඊູ ఠీూ೧ູ࿃ूੂ✧✧✧✧ළඕั࿃ूੂ࿃ूੂ</span></li>
+            <li><span class="numero">03</span><span class="titulo">Barry Can't Swim - Late Night Tales: Continuous Mix</span></li>
+            <li><span class="numero">04</span><span class="titulo">Earlham Mystics - Truth</span></li>
+            <li><span class="numero">05</span><span class="titulo">Aphex Twin, Four Tet - Untitled|SAW2 CD1 Track1|-Four Tet Mix</span></li>
+            <li><span class="numero">06</span><span class="titulo">kors k - Nirvana - Camellia Binaryheaven Remix</span></li>
+            <li><span class="numero">07</span><span class="titulo">The Prototypes, Salute - Oxygen - Salute Remix</span></li>
+            <li><span class="numero">08</span><span class="titulo">Mr.Bill, eliderp, sophro, Virtual Riot - Pleasure Seeker Virtual Riot Remix</span></li>
+            <li><span class="numero">09</span><span class="titulo">Skrillex, Randomer, Blawan, Mc Dricka - Thistle</span></li>
+            <li><span class="numero">10</span><span class="titulo">Dj Marky, Pola & Bryson, Javeon - Trouble</span></li>
+            <li><span class="numero">11</span><span class="titulo">Effy, Mall Grab - iluv</span></li>
+            <li><span class="numero">12</span><span class="titulo">Parken & Hanson - Let Me Be</span></li>
+            <li><span class="numero">13</span><span class="titulo">aran - BB2ME</span></li>
+            <li><span class="numero">14</span><span class="titulo">Srav3R - Mutabilis</span></li>
+            <li><span class="numero">15</span><span class="titulo">Billon, Rationale - Release Me</span></li>
+            <li><span class="numero">16</span><span class="titulo">Adrian Hour - Everything</span></li>
+            <li><span class="numero">17</span><span class="titulo">Missionary - 不浄な白い鳥</span></li>
+            <li><span class="numero">18</span><span class="titulo">Leotrix - Age Of Aquarius</span></li>
+            <li><span class="numero">19</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ -  ҉      ͡ ͞ ҉    ͡ ͞ ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞   ͘ ͞⃝̕ ͢    ̛ ⃝    ̸ ̡  ͢⃝̧  ͡ ͡  ̀ ̧ ̢⃝͜   ҉   ͞ ͞ ⃝͞   ͘ ͞ ͡⃝  ⃝҉҈҉҈҉҈҉҈҉҈҉   ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞   ͘ ͞⃝̕ ͢    ̛ ⃝    ̸ ̡  ͢⃝̧  ͡ ͡  ̀ ̧ ̢⃝͜   ҉   ͞ ͞ ⃝͞   ͘ ͞ ͡⃝  ⃝҉҈҉҈҉҈҉҈҉҈҉  ͡ ͞ ͞ ͞ ҉ ҉      ͡ ͞ ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞ </span></li>
+            <li><span class="numero">20</span><span class="titulo">Percussions - March 2013</span></li>
+        </ul>
+    </div>
+
+    <div>
+        <h1>¿Qué es IDM?</h1>
+        <p class="info-genero"><b>Intelligent dance music</b> (IDM; en inglés: "música inteligente de baile") es un género de música electrónica que surgió a principios de los años 1990. Su creación estuvo influenciada por los avances de la música dance underground, tales como el Detroit techno y varios estilos breakbeat que estaban emergiendo en el Reino Unido en esa época. Estilísticamente, IDM tendía a basarse en la experimentación individualista, en lugar de adherirse a características musicales asociadas a géneros específicos de la música de baile. La gama de estilos post-techno que emergieron a principios de la década de 1990 fueron descritos de maneras diversas, como "art techno", "ambient techno", "intelligent techno", y "electronica". En los Estados Unidos, este último se utiliza a menudo como un término general para describir no solo a la música electrónica downtempo o no bailable, sino también la música electrónica de baile (EDM).</p>
+    </div>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Pixiv3.jpg" alt="Historia" loading="lazy">
+            <div class="card-text">
+                <h2>Historia</h2>
+                <p>En la época en que el fenómeno rave se desarrollaba en Inglaterra, un número de productores musicales de esa escena comenzaron a explorar el campo de la experimentación sonora. Muy influidos por el primer techno, especialmente su vertiente más onírica o reposada, y al mismo tiempo por el ambient, comenzaron a desarrollar un tipo de techno que no estaba destinado para la pista de baile sino para escuchar fuera del club.</p>
+                <p>Se cree que el término "IDM" se formó en Estados Unidos en 1993 a partir de la creación de la IDM list, una lista de correo que nació con el objetivo de comentar y discutir sobre un grupo de artistas de techno inglés que estaban surgiendo en la época. Especialmente todos aquellos asociados al sello discográfico Warp Records y a la serie de recopilatorios y discos Artificial Intelligence. El nombre puede rastrearse en grupos de discusión de Internet hasta 1991. Antes de la adopción del término eran comunes otros nombres como "braindance" (preferido por el sello Rephlex Records), "electronic listening music", "listening techno", "art techno" y "experimental techno".</p>
+            </div>
+        </div>
+    </section>
+
+    <h2 style="text-align: center; margin-top: 40px;">Otros géneros de música electrónica</h2>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Frankie1.webp" alt="House" loading="lazy">
+            <div class="card-text">
+                <h2>House</h2>
+                <p>El house es un género de música electrónica que se desarrolló en las ciudades de Chicago y Detroit a finales de los años 80. Se caracteriza por un ritmo constante de 120-130 BPM, con elementos de funk, soul y disco. El house se originó en clubes y fue popularizado por DJs y productores como Frankie Knuckles, Marshall Jefferson y Roni Size.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Hernan_Cattaneo.webp" alt="Progressive House" loading="lazy">
+            <div class="card-text">
+                <h2>Progressive House</h2>
+                <p>El progressive house es un subgénero del house que se caracteriza por su estructura melódica y su evolución sonora. Se desarrolló a partir de los años 90 y se ha vuelto muy popular en los clubes y festivales de música electrónica.</p>
+                <p>Ya hacia la década de 2010, el Progressive House era probablemente el género musical electrónico más popular de Europa y de partes de los Estados Unidos, y grandes productores llegaron al éxito como Avicii, Alesso, Hardwell, Nicky Romero, la Swedish House Mafia, Deadmau5, Afrojack, Hernán Cattáneo o unos años más tarde Martin Garrix.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/ASOT.jpg" alt="Trance" loading="lazy">
+            <div class="card-text">
+                <h2>Trance</h2>
+                <p>El trance es un género de música electrónica que se caracteriza por su ritmo constante de 130-150 BPM, con elementos de techno, house y música ambiental. El trance se originó en Alemania a principios de los años 90 y se ha vuelto muy popular en los clubes y festivales de música electrónica.</p>
+                <p>Algunos de los artistas más destacados del trance incluyen a Armin van Buuren, Tiësto, Paul van Dyk, Ferry Corsten y Above & Beyond.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Four_Tet.webp" alt="Música experimental" loading="lazy">
+            <div class="card-text">
+                <h2>Música experimental</h2>
+                <p>La música experimental es un género que se caracteriza por su enfoque innovador y su disposición para explorar nuevos sonidos y estructuras musicales. Este género a menudo combina elementos de diferentes estilos musicales y puede ser difícil de clasificar dentro de categorías tradicionales. Algunos artistas destacados de este género incluyen a Four Tet, Aphex Twin y Autechre.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Skrillex2.jpg" alt="Dubstep" loading="lazy">
+            <div class="card-text">
+                <h2>Dubstep</h2>
+                <p>El dubstep es un género de música electrónica que se caracteriza por su ritmo lento y sus bajos profundos. Se originó en el Reino Unido a principios de los años 90 y se ha vuelto muy popular en los clubes y festivales de música electrónica.</p>
+                <p>Algunos de los artistas más destacados del dubstep incluyen a Skrillex, Crankdat, Diplo y Nero.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/Salute.jpg" alt="UK Garage" loading="lazy">
+            <div class="card-text">
+                <h2>UK Garage</h2>
+                <p>El UK Garage es un género de música electrónica que se caracteriza por su ritmo rápido y sus elementos de jazz y soul. Se originó en el Reino Unido a principios de los años 90 y se ha vuelto muy popular en los clubes y festivales de música electrónica.</p>
+                <p>Algunos de los artistas más destacados del UK Garage incluyen a Salute, DJ Fresh, Example, and Burial.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/TANO_C.png" alt="J Core" loading="lazy">
+            <div class="card-text">
+                <h2>J Core</h2>
+                <p>El término J-Core (Jコア) define a un subgénero japonés derivado del Techno Hardcore y Gabber asociado a productores y DJ japoneses que surgieron a partir de la década de 1990. El origen del J-Core está estrechamente influenciado por la subcultura otaku, siendo de sus características principales el incorporar elementos sonoros como muestras de audio tomadas de series de Anime, videojuegos, programas de televisión y comedias, su ritmo que oscila entre 150 BPM - 250 BPM.</p>
+                <p>Algunos de los artistas más destacados del J-Core incluyen a Srav3r, Nhato, REDALiCE, USAO, t+pazolite, aran, DJ Sharpnel, Camellia y DJ Genki.</p>
+            </div>
+        </div>
+    </section>
+
+    <a href="albumes.html" class="link-tracklist">———-»» Albumes y EPs ««———-</a>
+
+    <h2>¿Qué es un ID?</h2>
+    <p class="info-genero">En la música electrónica, un ID (abreviatura de Identification) es una canción o pista musical cuyo nombre, autor o ambos aún no se han revelado. Es un término muy común en los sets en vivo, festivales y transmisiones (como las de Tomorrowland o Boiler Room) cuando un DJ pincha una canción nueva y misteriosa.<br>El uso de la palabra proviene de la cultura radial y de los DJs, quienes marcaban los discos de vinilo de acetato que aún no tenían etiqueta oficial con la palabra "ID" (identificación pendiente) hasta que el sello discográfico publicara los datos reales.</p>
+
+    <h2>¿En qué situaciones se usa un ID?</h2>
+    <p class="info-genero">
+        <strong>Canciones inéditas (Unreleased):</strong> Los DJs y productores utilizan IDs para referirse a sus propios temas nuevos que aún no están terminados o que aún no tienen fecha de lanzamiento oficial.<br>
+        <strong>Prueba de reacción (Testing):</strong> Los artistas tocan canciones sin título en grandes festivales simplemente para evaluar cómo reacciona el público antes de decidir si lanzarlas o descartarlas.<br>
+        <strong>Misterio o colaboraciones:</strong> A veces es una estrategia para crear misterio, expectativa o para ocultar el nombre de una colaboración secreta que aún no está firmada con ninguna disquera.
+    </p>
+
+    <table class="tabla-eventos">
+        <thead>
+            <tr>
+                <th>DJ</th>
+                <th>IDs</th>
+                <th>Fecha</th>
+                <th>Colaboradores</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Skrillex</td>
+                <td>Sun Up</td>
+                <td>26 de Julio del 2023</td>
+                <td>Vigro Deep, Sarz, Virtual Riot, Burna Boy</td>
+            </tr>
+            <tr>
+                <td>Ninajirachi</td>
+                <td>WannaCry</td>
+                <td>11 de Abril del 2026</td>
+                <td>Porter Robinson</td>
+            </tr>
+            <tr>
+                <td>Four Tet</td>
+                <td>Human Voice</td>
+                <td>12 de Septiembre del 2025</td>
+                <td>Skrillex, Fred again..</td>
+            </tr>
+            <tr>
+                <td>KAYTRANADA</td>
+                <td>Intimidated (Salute Edit)</td>
+                <td>16 de Abril del 2022</td>
+                <td>Salute</td>
+            </tr>
+            <tr>
+                <td>Fred again..</td>
+                <td>Bipolar</td>
+                <td>11 de Octubre del 2024</td>
+                <td>Skrillex, Central Cee</td>
+            </tr>
+            <tr>
+                <td>MPH</td>
+                <td>Long Goodbye</td>
+                <td>26 de Mayo del 2026</td>
+                <td>Nathan Nicholson</td>
+            </tr>
+            <tr>
+                <td>Skrillex</td>
+                <td>Bunga</td>
+                <td>26 de Mayo del 2026</td>
+                <td>MPH</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="floating-player">
+        <div class="player-info">
+            <span id="player-title">Lush FM Trance Fingers - Live at Alexandra Palace London, 24th May 2023 - Four Tet</span>
+        </div>
+        <audio id="audio-player" controls>
+            <source id="audio-source" src="musica/lush-fm.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <!-- Vinculación del JavaScript -->
+    <script src="script2.js"></script>
+</body>
+</html>

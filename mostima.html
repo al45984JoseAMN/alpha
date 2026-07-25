@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostima — Sound Archive</title>
+    <!-- Vinculación opcional con tus estilos generales si los compartes -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style type="text/css">
+        /* --- ESTILOS ESPECÍFICOS PARA LA PÁGINA DE MOSTIMA --- */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #33e0ff; /* Celeste / Azul claro característico */
+            --border-color: #333333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Animación de despliegue al entrar a la página */
+            animation: desplieguePagina 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes desplieguePagina {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tipografía serif cursiva aplicada a los títulos principales y de secciones */
+        .titulo-serif-cursiva {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-weight: normal;
+            color: var(--accent-color);
+        }
+
+        h1.titulo-serif-cursiva {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .volver-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 25px;
+            font-weight: bold;
+            border: 1px solid var(--accent-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .volver-link:hover {
+            background-color: var(--accent-color);
+            color: #121212;
+            box-shadow: 0 0 15px rgba(51, 224, 255, 0.4);
+        }
+
+        .mostima-container {
+            max-width: 950px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Tarjeta principal con imagen y biografía */
+        .mostima-hero {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background-color: var(--card-bg);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.4);
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .mostima-hero {
+                flex-direction: row;
+                align-items: stretch;
+            }
+        }
+
+        /* Contenedor de imagen estilizado como marco vertical equilibrado */
+        .mostima-imagen-wrapper {
+            flex: 0 0 340px;
+            width: 100%;
+            border-radius: 14px;
+            overflow: hidden;
+            background-color: #161616;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(51, 224, 255, 0.15);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .mostima-imagen-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+
+        .mostima-imagen-wrapper img:hover {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
+
+        .mostima-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .titulo-mostima {
+            font-size: 30px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(51, 224, 255, 0.2);
+            padding-bottom: 8px;
+        }
+
+        /* Tipografía serif cursiva aplicada a la descripción */
+        .texto-descripcion-serif {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-weight: normal;
+            font-size: 15.5px;
+            line-height: 1.7;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+
+        /* Sección de Datos / Ficha Técnica */
+        .ficha-tecnica {
+            background-color: var(--card-bg);
+            padding: 30px 35px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.4);
+        }
+
+        .ficha-tecnica h3 {
+            margin-top: 0;
+            font-size: 22px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .tabla-datos {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tabla-datos th, .tabla-datos td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14.5px;
+        }
+
+        .tabla-datos th {
+            color: var(--accent-color);
+            font-weight: 600;
+            width: 38%;
+        }
+
+        .tabla-datos td {
+            opacity: 0.85;
+        }
+
+        .dato-misterio {
+            font-style: italic;
+            color: #7a9cc6;
+            letter-spacing: 1px;
+        }
+
+        /* --- SECCIÓN: LA COLECCIÓN DE MOSTIMA --- */
+        .coleccion-section {
+            background-color: var(--card-bg);
+            padding: 30px 35px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.4);
+        }
+
+        .coleccion-section h3 {
+            margin-top: 0;
+            font-size: 22px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .grid-tracks {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .grid-tracks {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .track-card {
+            background-color: #161616;
+            border: 1px solid rgba(51, 224, 255, 0.15);
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .track-card:hover {
+            border-color: rgba(51, 224, 255, 0.45);
+            box-shadow: 0 0 20px rgba(51, 224, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .track-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .track-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .track-artist {
+            font-size: 13.5px;
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        /* NUEVO ESTILO PARA LOS REPRODUCTORES DE AUDIO */
+        audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 10px;
+            outline: none;
+            /* Filtro para estilizar los controles nativos oscuros con un toque celeste sutil */
+            filter: invert(90%) hue-rotate(170deg) saturate(1.5) contrast(1.1);
+            background-color: #111b22;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="volver-link">«« Volver a αlpha</a>
+
+    <h1 class="titulo-serif-cursiva">// SOUND ARCHIVE</h1>
+
+    <div class="mostima-container">
+        
+        <!-- Bloque principal con imagen y descripción -->
+        <div class="mostima-hero">
+            <div class="mostima-imagen-wrapper">
+                <img src="imagenes_proyecto/mostima2.jpg" alt="Mostima">
+            </div>
+            <div class="mostima-info">
+                <h2 class="titulo-serif-cursiva titulo-mostima">Mostima</h2>
+                <p class="texto-descripcion-serif">
+                    En las profundidades del sonido nocturno, <strong>Mostima</strong> opera como una entidad de frecuencias suspendidas. Se dice que sus artefactos sonoros tienen la propiedad mística de alterar la percepción del tiempo, ralentizando los beats ambientales y dilatando las texturas electrónicas hasta el infinito.
+                </p>
+                <p class="texto-descripcion-serif">
+                    Lejos de los escenarios convencionales, su figura se mueve entre sombras y destellos celestes, dedicada a rescatar melodías perdidas y grabaciones experimentales que ninguna otra disquera se atreve a tocar. Su archivo musical es un santuario para aquellos que buscan perderse en la penumbra del IDM y el ambient profundo.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bloque de datos y estadísticas -->
+        <div class="ficha-tecnica">
+            <h3 class="titulo-serif-cursiva">// Registro De Archivo</h3>
+            <table class="tabla-datos">
+                <tr>
+                    <th>Alias / Nombre Clave</th>
+                    <td>Mostima</td>
+                </tr>
+                <tr>
+                    <th>Edad</th>
+                    <td><span class="dato-misterio">[ Frecuencia Desconocida ]</span></td>
+                </tr>
+                <tr>
+                    <th>Origen Geográfico</th>
+                    <td><span class="dato-misterio">[ Coordenadas Ocultas ]</span></td>
+                </tr>
+                <tr>
+                    <th>Géneros Principales</th>
+                    <td>Ambient Techno, IDM, Experimental, Dark Electronics</td>
+                </tr>
+                <tr>
+                    <th>Instrumentos / Equipo</th>
+                    <td>Sintetizadores modulares, Bastones de resonancia temporal, Cajas de ritmos análogas</td>
+                </tr>
+                <tr>
+                    <th>Estado Actual</th>
+                    <td>En tránsito entre dimensiones sonoras</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECCIÓN: La colección de mostima -->
+        <div class="coleccion-section">
+            <h3 class="titulo-serif-cursiva">// La colección de mostima</h3>
+            <div class="grid-tracks">
+                
+                <!-- Track 1 -->
+                <div class="track-card">
+                    <div class="track-info">
+                        <span class="track-title">AttraqtiA</span>
+                        <span class="track-artist">Camellia</span>
+                    </div>
+                    <audio controls>
+                        <source src="La colección-de-mostima/AttraqtiA.mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="track-card">
+                    <div class="track-info">
+                        <span class="track-title">Nacreous Snowmelt</span>
+                        <span class="track-artist">Camellia</span>
+                    </div>
+                    <audio controls>
+                        <source src="La colección-de-mostima/Nacreous Snowmelt.mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+
+                <!-- Track 3 -->
+                <div class="track-card">
+                    <div class="track-info">
+                        <span class="track-title">Quaoar</span>
+                        <span class="track-artist">Camellia</span>
+                    </div>
+                    <audio controls>
+                        <source src="La colección-de-mostima/Quaoar (For _Thanks Follower 50k_).mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+
+                <!-- Track 4 -->
+                <div class="track-card">
+                    <div class="track-info">
+                        <span class="track-title">Welcome To The Cyphisonia</span>
+                        <span class="track-artist">Camellia</span>
+                    </div>
+                    <audio controls>
+                        <source src="La colección-de-mostima/Welcome To The Cyphisonia.mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

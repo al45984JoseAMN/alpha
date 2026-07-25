@@ -6,6 +6,117 @@
     <title>αlpha - Música Electrónica Underground</title>
     <!-- Vinculación del CSS -->
     <link rel="stylesheet" href="styles.css">
+    
+    <style type="text/css">
+        /* --- ESTILOS PARA LA SECCIÓN ACTUALIZADA EN ALPHA --- */
+        .seccion-alpha-moodboard {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 40px auto;
+            max-width: 900px;
+            background-color: var(--card-bg, #1e1e1e);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color, #333333);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        @media (min-width: 768px) {
+            .seccion-alpha-moodboard {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .alpha-moodboard-banner {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .alpha-moodboard-banner img {
+            width: 100%;
+            height: auto;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            display: block;
+        }
+
+        .alpha-moodboard-banner img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(51, 224, 255, 0.3);
+        }
+
+        .alpha-manifiesto-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .alpha-manifiesto-card h2 {
+            margin-top: 0;
+            font-size: 22px;
+            color: var(--accent-color, #33e0ff);
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* Estilo específico para la palabra Mostima con tipografía serif e cursiva */
+        .titulo-mostima {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .alpha-manifiesto-card p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .alpha-manifiesto-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .alpha-manifiesto-tags span {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--accent-color, #33e0ff);
+            background-color: rgba(51, 224, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(51, 224, 255, 0.2);
+        }
+
+        .btn-saber-mas {
+            display: inline-block;
+            align-self: flex-start;
+            background-color: transparent;
+            color: var(--accent-color, #33e0ff);
+            border: 1px solid var(--accent-color, #33e0ff);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-saber-mas:hover {
+            background-color: var(--accent-color, #33e0ff);
+            color: #121212;
+            box-shadow: 0 0 15px rgba(51, 224, 255, 0.4);
+        }
+    </style>
 </head>
 <body>
 
@@ -83,23 +194,39 @@
         </div>
     </section>
 
-    <div class="contenido-container">
-        <div class="contenedor-imagen">
+    <!-- SECCIÓN ACTUALIZADA CON MOSTIMA -->
+    <div class="seccion-alpha-moodboard">
+        <div class="alpha-moodboard-banner">
             <a href="https://open.spotify.com/playlist/2MUqraSrM1BAaL6e2HgdDQ?si=UIKpCEn9TQek_80jIk-8TQ" target="_blank">
-                <img src="imagenes_proyecto/Pixiv2.jpg" alt="Imagen 1">
+                <img src="imagenes_proyecto/Pixiv2.jpg" alt="Mostima Sound Archive">
             </a>
         </div>
+        
+        <div class="alpha-manifiesto-card">
+            <h2>// SOUND ARCHIVE: <span class="titulo-mostima">Mostima</span></h2>
+            <p><strong>Curaduría de la Playlist:</strong> Una selección enfocada en texturas electrónicas profundas, frecuencias experimentales y ritmos oscuros que definen la vanguardia underground.</p>
+            <p><strong>Sobre Mostima:</strong> Selector y curator de paisajes sonoros nocturnos, explorando texturas donde el tiempo parece detenerse. Su enfoque musical entrelaza frecuencias etéreas, beats minimalistas y una atmósfera de misterio absoluto que guía al oyente por los rincones más profundos de la electrónica experimental.</p>
+            <div class="alpha-manifiesto-tags">
+                <span>#Mostima</span>
+                <span>#AmbientTechno</span>
+                <span>#Experimental</span>
+                <span>#IDM</span>
+            </div>
+            <a href="mostima.html" class="btn-saber-mas">Conoce a Mostima ———»</a>
+        </div>
+    </div>
 
+    <div style="text-align: center; margin: 30px 0;">
         <a href="Proyecto1.html" class="link-tracklist">———-»» My Tracklist ««———-</a>
     </div>
 
-    <p>Contenido de αlpha</p>
+    <p style="text-align: center;">Contenido de αlpha</p>
 
     <div class="lista-canciones-box">
         <h3>αlpha</h3>
         <ul class="lista-animada">
             <li><span class="numero">01</span><span class="titulo">DOREY - Faith</span></li>
-            <li><span class="numero">02</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ - ʅ͡͡͡͡͡͡͡͡͡͡͡(ƟӨ)ʃ͡͡͡͡͡͡͡͡͡͡ ꐑ(ཀ ඊູ ఠీూ೧ູ࿃ूੂ✧✧✧✧✧ළඕั࿃ूੂ࿃ूੂ</span></li>
+            <li><span class="numero">02</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ - ʅ͡͡͡͡͡͡͡͡͡͡͡(ƟӨ)ʃ͡͡͡͡͡͡͡͡͡͡ ꐑ(ཀ ඊູ ఠీూ೧ູ࿃ूੂ✧✧✧ළඕั࿃ूੂ࿃ूੂ</span></li>
             <li><span class="numero">03</span><span class="titulo">Barry Can't Swim - Late Night Tales: Continuous Mix</span></li>
             <li><span class="numero">04</span><span class="titulo">Earlham Mystics - Truth</span></li>
             <li><span class="numero">05</span><span class="titulo">Aphex Twin, Four Tet - Untitled|SAW2 CD1 Track1|-Four Tet Mix</span></li>
@@ -116,7 +243,7 @@
             <li><span class="numero">16</span><span class="titulo">Adrian Hour - Everything</span></li>
             <li><span class="numero">17</span><span class="titulo">Missionary - 不浄な白い鳥</span></li>
             <li><span class="numero">18</span><span class="titulo">Leotrix - Age Of Aquarius</span></li>
-            <li><span class="numero">19</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ -  ҉      ͡ ͞ ҉    ͡ ͞ ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞   ͘ ͞⃝̕ ͢    ̛ ⃝    ̸ ̡  ͢⃝̧  ͡ ͡  ̀ ̧ ̢⃝͜   ҉   ͞ ͞ ⃝͞   ͘ ͞ ͡⃝  ⃝҉҈҉҈҉҈҉҈҉҈҉   ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞   ͘ ͞⃝̕ ͢    ̛ ⃝    ̸ ̡  ͢⃝̧  ͡ ͡  ̀ ̧ ̢⃝͜   ҉   ͞ ͞ ⃝͞   ͘ ͞ ͡⃝  ⃝҉҈҉҈҉҈҉҈҉҈҉  ͡ ͞ ͞ ͞ ҉ ҉       ͡ ͞ ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞ </span></li>
+            <li><span class="numero">19</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ -  ҉      ͡ ͞ ҉    ͡ ͞ ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞   ͘ ͞⃝̕ ͢    ̛ ⃝    ̸ ̡  ͢⃝̧  ͡ ͡  ̀ ̧ ̢⃝͜   ҉   ͞ ͞ ⃝͞   ͘ ͞ ͡⃝  ⃝҉҈҉҈҉҈҉҈҉҈҉   ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞   ͘ ͞⃝̕ ͢    ̛ ⃝    ̸ ̡  ͢⃝̧  ͡ ͡  ̀ ̧ ̢⃝͜   ҉   ͞ ͞ ⃝͞   ͘ ͞ ͡⃝  ⃝҉҈҉҈҉҈҉҈҉҈҉  ͡ ͞ ͞ ͞ ҉ ҉      ͡ ͞ ͞ ͞ ҉● ࿀ ●  ࿀  ●   ҉⃝    ⃝͢ ͞ </span></li>
             <li><span class="numero">20</span><span class="titulo">Percussions - March 2013</span></li>
         </ul>
     </div>
@@ -281,7 +408,6 @@
         </tbody>
     </table>
 
-    
     <div class="floating-player">
         <div class="player-info">
             <span id="player-title">Lush FM Trance Fingers - Live at Alexandra Palace London, 24th May 2023 - Four Tet</span>
@@ -293,7 +419,6 @@
     </div>
 
     <!-- Vinculación del JavaScript -->
-    <!-- <script src="script.js"></script> -->
     <script src="script2.js"></script>
 </body>
 </html>
