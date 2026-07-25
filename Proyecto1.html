@@ -467,6 +467,16 @@
 
     </div> 
 
-    <script src="script.js"></script>
+    <script>
+         const btn = document.getElementById('btn-modo');
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('tema', document.body.classList.contains('dark-mode') ? 'oscuro' : 'claro');
+        });
+
+        if(localStorage.getItem('tema') === 'oscuro') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
 </body>
 </html>
