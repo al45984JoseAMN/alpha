@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>αlpha — Registro</title>
     <style type="text/css">
-        /* ================================================= */
-        /* VARIABLES DEL MODO OSCURO                         */
-        /* ================================================= */
+       /* variables del modo oscuro */
         :root {
             --bg-color: #f5f6fa;
             --text-color: #2f3542;
@@ -27,9 +25,9 @@
             --input-bg: #252525;
         }
 
-        /* ================================================= */
-        /* ESTILOS GENERALES                                 */
-        /* ================================================= */
+     
+        /* Estilos Generales */
+        
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -51,7 +49,7 @@
             margin-bottom: 20px;
         }
 
-        /* Botón de Modo Oscuro idéntico al de αlpha */
+        /* Botón de Modo Oscuro  */
         .btn-modo {
             position: fixed;
             top: 20px;
@@ -88,9 +86,8 @@
             text-decoration: underline;
         }
 
-        /* ================================================= */
-        /* CONTENEDOR DEL FORMULARIO (Estilo Tarjeta Alpha)  */
-        /* ================================================= */
+      
+        /* Contenedor Formulario  */
         .card-container {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -300,15 +297,15 @@
             }
         }
 
-        // Manejo del formulario con alerta nativa y redirección
+        // alerta nativa y redirección
         document.getElementById('formRegistro').addEventListener('submit', function(event) {
             // Evita que la página se recargue de forma convencional
             event.preventDefault();
 
-            // Muestra la alerta nativa del navegador con tu mensaje
-            alert("Ahora eres parte de la frecuencia alpha");
+            // alerta
+            alert("Ahora eres parte de la frecuencia αlpha");
 
-            // Redirige automáticamente al index cuando el usuario cierre la alerta
+            // Redirige automáticamente al index 
             window.location.href = 'index.html';
         });
     </script>
