@@ -81,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Diabla Extended Mix - Joris Voorm ",
             src: "musica/Diabla - Extended Mix - Joris Voorn.mp3"
+        },
+        {
+            name: "Blame - James Zabiela",
+            src: "musica/Blame - James Zabiela.mp3"
         }
     ];
 
