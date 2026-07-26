@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostima — Sound Archive</title>
-    <!-- Vinculación opcional con tus estilos generales si los compartes -->
     <link rel="stylesheet" href="styles.css">
     
     <style type="text/css">
-        /* --- ESTILOS ESPECÍFICOS PARA LA PÁGINA DE MOSTIMA --- */
         :root {
             --bg-color: #121212;
             --card-bg: #1e1e1e;
             --text-color: #e0e0e0;
-            --accent-color: #33e0ff; /* Celeste / Azul claro característico */
+            --accent-color: #33e0ff;
             --border-color: #333333;
         }
 
@@ -22,11 +20,10 @@
             color: var(--text-color);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             margin: 0;
-            padding: 30px 20px;
+            padding: 30px 20px 60px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Animación de despliegue al entrar a la página */
             animation: desplieguePagina 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
             transform: translateY(20px);
@@ -39,7 +36,6 @@
             }
         }
 
-        /* Tipografía serif cursiva aplicada a los títulos principales y de secciones */
         .titulo-serif-cursiva {
             font-family: 'Times New Roman', Times, serif;
             font-style: italic;
@@ -80,7 +76,6 @@
             gap: 30px;
         }
 
-        /* Tarjeta principal con imagen y biografía */
         .mostima-hero {
             display: flex;
             flex-direction: column;
@@ -100,7 +95,6 @@
             }
         }
 
-        /* Contenedor de imagen estilizado como marco vertical equilibrado */
         .mostima-imagen-wrapper {
             flex: 0 0 340px;
             width: 100%;
@@ -143,7 +137,6 @@
             padding-bottom: 8px;
         }
 
-        /* Tipografía serif cursiva aplicada a la descripción */
         .texto-descripcion-serif {
             font-family: 'Times New Roman', Times, serif;
             font-style: italic;
@@ -154,7 +147,6 @@
             margin-bottom: 15px;
         }
 
-        /* Sección de Datos / Ficha Técnica */
         .ficha-tecnica {
             background-color: var(--card-bg);
             padding: 30px 35px;
@@ -199,7 +191,6 @@
             letter-spacing: 1px;
         }
 
-        /* --- SECCIÓN: LA COLECCIÓN DE MOSTIMA --- */
         .coleccion-section {
             background-color: var(--card-bg);
             padding: 30px 35px;
@@ -237,6 +228,7 @@
             flex-direction: column;
             gap: 14px;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .track-card:hover {
@@ -245,10 +237,17 @@
             transform: translateY(-2px);
         }
 
+        .track-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
         .track-info {
             display: flex;
             flex-direction: column;
             gap: 4px;
+            flex: 1;
         }
 
         .track-title {
@@ -263,13 +262,81 @@
             font-style: italic;
         }
 
-        /* NUEVO ESTILO PARA LOS REPRODUCTORES DE AUDIO */
+        /* Botón de descarga */
+        .btn-descarga {
+            background: transparent;
+            border: 1px solid rgba(51, 224, 255, 0.3);
+            color: var(--accent-color);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+
+        .btn-descarga:hover {
+            background-color: var(--accent-color);
+            color: #121212;
+            box-shadow: 0 0 10px rgba(51, 224, 255, 0.4);
+        }
+
+        .btn-descarga svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* ECUALIZADOR VISUAL (Opción 5) */
+        .audio-visualizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 16px;
+            padding: 0 4px;
+            opacity: 0.2;
+            transition: opacity 0.3s ease;
+        }
+
+        .audio-visualizer.active {
+            opacity: 1;
+        }
+
+        .bar {
+            width: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+            height: 4px;
+            transition: height 0.15s ease;
+        }
+
+        .audio-visualizer.active .bar:nth-child(1) { animation: bounce 0.6s infinite alternate; }
+        .audio-visualizer.active .bar:nth-child(2) { animation: bounce 0.4s infinite alternate; }
+        .audio-visualizer.active .bar:nth-child(3) { animation: bounce 0.7s infinite alternate; }
+        .audio-visualizer.active .bar:nth-child(4) { animation: bounce 0.5s infinite alternate; }
+
+        @keyframes bounce {
+            0% { height: 4px; }
+            100% { height: 16px; }
+        }
+
+        .track-footer-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
         audio {
             width: 100%;
             height: 40px;
             border-radius: 10px;
             outline: none;
-            /* Filtro para estilizar los controles nativos oscuros con un toque celeste sutil */
             filter: invert(90%) hue-rotate(170deg) saturate(1.5) contrast(1.1);
             background-color: #111b22;
         }
@@ -283,7 +350,6 @@
 
     <div class="mostima-container">
         
-        <!-- Bloque principal con imagen y descripción -->
         <div class="mostima-hero">
             <div class="mostima-imagen-wrapper">
                 <img src="imagenes_proyecto/mostima2.jpg" alt="Mostima">
@@ -299,7 +365,6 @@
             </div>
         </div>
 
-        <!-- Bloque de datos y estadísticas -->
         <div class="ficha-tecnica">
             <h3 class="titulo-serif-cursiva">// Registro De Archivo</h3>
             <table class="tabla-datos">
@@ -330,131 +395,252 @@
             </table>
         </div>
 
-        <!-- SECCIÓN: La colección de mostima -->
         <div class="coleccion-section">
             <h3 class="titulo-serif-cursiva">// La colección de mostima</h3>
             <div class="grid-tracks">
                 
                 <!-- Track 1 -->
                 <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">AttraqtiA</span>
-                        <span class="track-artist">Camellia</span>
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">AttraqtiA</span>
+                            <span class="track-artist">Camellia</span>
+                        </div>
+                        <a href="La colección-de-mostima/AttraqtiA.mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
                     </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/AttraqtiA.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/AttraqtiA.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Track 2 -->
                 <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">Nacreous Snowmelt</span>
-                        <span class="track-artist">Camellia</span>
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">Nacreous Snowmelt</span>
+                            <span class="track-artist">Camellia</span>
+                        </div>
+                        <a href="La colección-de-mostima/𝒩𝒶𝒸𝓇𝑒𝑜𝓊𝓈_𝒮𝓃𝑜𝓌𝓂𝑒𝓁𝓉1.mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
                     </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/𝒩𝒶𝒸𝓇𝑒𝑜𝓊𝓈_𝒮𝓃𝑜𝓌𝓂𝑒𝓁𝓉1.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/𝒩𝒶𝒸𝓇𝑒𝑜𝓊𝓈_𝒮𝓃𝑜𝓌𝓂𝑒𝓁𝓉1.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Track 3 -->
                 <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">Quaoar</span>
-                        <span class="track-artist">Camellia</span>
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">Quaoar</span>
+                            <span class="track-artist">Camellia</span>
+                        </div>
+                        <a href="La colección-de-mostima/Quaoar (For _Thanks Follower 50k_).mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
                     </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/Quaoar (For _Thanks Follower 50k_).mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/Quaoar (For _Thanks Follower 50k_).mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Track 4 -->
                 <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">Welcome To The Cyphisonia</span>
-                        <span class="track-artist">Camellia</span>
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">Welcome To The Cyphisonia</span>
+                            <span class="track-artist">Camellia</span>
+                        </div>
+                        <a href="La colección-de-mostima/Welcome To The Cyphisonia.mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
                     </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/Welcome To The Cyphisonia.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/Welcome To The Cyphisonia.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
                 </div>
 
-               <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">Epimerization</span>
-                        <span class="track-artist">Camellia</span>
-                    </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/07_Epimerization.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
-                </div>
-
+                <!-- Track 5 -->
                 <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">Enantiomorphs</span>
-                        <span class="track-artist">Camellia</span>
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">Epimerization</span>
+                            <span class="track-artist">Camellia</span>
+                        </div>
+                        <a href="La colección-de-mostima/07_Epimerization.mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
                     </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/Camellia_-_Enantiomorphs.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/07_Epimerization.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
                 </div>
 
-                 <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">Eternally</span>
-                        <span class="track-artist">Camellia</span>
-                    </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/Camellia_Eternally.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
-                </div>
-
+                <!-- Track 6 -->
                 <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">Flower of Wilderness</span>
-                        <span class="track-artist">Camellia</span>
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">Enantiomorphs</span>
+                            <span class="track-artist">Camellia</span>
+                        </div>
+                        <a href="La colección-de-mostima/Camellia_-_Enantiomorphs.mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
                     </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/Camellia_flower_of_wilderness.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/Camellia_-_Enantiomorphs.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Track 7 -->
                 <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">Movement 5 - Pandora’s Creation</span>
-                        <span class="track-artist">Floating Points, San Francisco Ballet Orchesta</span>
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">Eternally</span>
+                            <span class="track-artist">Camellia</span>
+                        </div>
+                        <a href="La colección-de-mostima/Camellia_Eternally.mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
                     </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/Movement 5 - Pandora’s Creation - Floating Points.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/Camellia_Eternally.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Track 8 -->
                 <div class="track-card">
-                    <div class="track-info">
-                        <span class="track-title">The Isle of the Dead Op 29</span>
-                        <span class="track-artist">Sergei Rachmaninoff, Russian National Orchesta</span>
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">Flower of Wilderness</span>
+                            <span class="track-artist">Camellia</span>
+                        </div>
+                        <a href="La colección-de-mostima/Camellia_flower_of_wilderness.mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
                     </div>
-                    <audio controls>
-                        <source src="La colección-de-mostima/The_Isle_of_the_Dead_Op_29_.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/Camellia_flower_of_wilderness.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Track 9 -->
+                <div class="track-card">
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">Movement 5 - Pandora’s Creation</span>
+                            <span class="track-artist">Floating Points, San Francisco Ballet Orchestra</span>
+                        </div>
+                        <a href="La colección-de-mostima/Movement 5 - Pandora’s Creation - Floating Points.mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/Movement 5 - Pandora’s Creation - Floating Points.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Track 10 -->
+                <div class="track-card">
+                    <div class="track-header">
+                        <div class="track-info">
+                            <span class="track-title">The Isle of the Dead Op 29</span>
+                            <span class="track-artist">Sergei Rachmaninoff, Russian National Orchestra</span>
+                        </div>
+                        <a href="La colección-de-mostima/The_Isle_of_the_Dead_Op_29_.mp3" download class="btn-descarga" title="Descargar frecuencia">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+                    <div class="track-footer-controls">
+                        <audio controls>
+                            <source src="La colección-de-mostima/The_Isle_of_the_Dead_Op_29_.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-visualizer">
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
 
     </div>
 
+    <!-- Script del ecualizador visual -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const audioElements = document.querySelectorAll('audio');
+
+            audioElements.forEach(audio => {
+                const card = audio.closest('.track-card');
+                const visualizer = card.querySelector('.audio-visualizer');
+
+                audio.addEventListener('play', () => {
+                    audioElements.forEach(otherAudio => {
+                        if (otherAudio !== audio) {
+                            otherAudio.pause();
+                        }
+                    });
+                    visualizer.classList.add('active');
+                });
+
+                audio.addEventListener('pause', () => {
+                    visualizer.classList.remove('active');
+                });
+
+                audio.addEventListener('ended', () => {
+                    visualizer.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
