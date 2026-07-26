@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     
     <style type="text/css">
-        /* --- Etilos generales de alpha --- */
+        /* --- Estilos generales de alpha --- */
         .seccion-alpha-moodboard {
             display: flex;
             flex-direction: column;
@@ -115,6 +115,32 @@
             color: #121212;
             box-shadow: 0 0 15px rgba(51, 224, 255, 0.4);
         }
+
+        /* --- Estilo para el botón de "Únete a alpha" abajo de Mostima --- */
+        .seccion-unete {
+            text-align: center;
+            margin: 30px auto;
+            max-width: 900px;
+        }
+
+        .btn-unete {
+            display: inline-block;
+            background-color: var(--accent-color, #f383db);
+            color: #ffffff;
+            padding: 13px 35px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(243, 131, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-unete:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 131, 219, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -215,6 +241,11 @@
         </div>
     </div>
 
+    <!-- UBICACIÓN: Justo afuera y debajo de la sección Sound Archive Mostima -->
+    <div class="seccion-unete">
+        <a href="registro.html" class="btn-unete">Únete a alpha</a>
+    </div>
+
     <div style="text-align: center; margin: 30px 0;">
         <a href="Proyecto1.html" class="link-tracklist">———-»» My Tracklist ««———-</a>
     </div>
@@ -225,7 +256,7 @@
         <h3>αlpha</h3>
         <ul class="lista-animada">
             <li><span class="numero">01</span><span class="titulo">DOREY - Faith</span></li>
-            <li><span class="numero">02</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ - ʅ͡͡͡͡͡͡͡͡͡͡͡(ƟӨ)ʃ͡͡͡͡͡͡͡͡͡͡ ꐑ(ཀ ඊູ ఠీూ೧ູ࿃ूੂ✧✧✧ළඕั࿃ूੂ࿃ूੂ</span></li>
+            <li><span class="numero">02</span><span class="titulo">⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ - ʅ͡͡͡͡͡͡͡͡͡͡͡(ƟӨ)ʃ͡͡͡͡͡͡͡͡͡͡ ꐑ(ཀ ඊູ ఠీూ೧ູ࿃ूੂ✧✧ළඕั࿃ूੂ࿃ूੂ</span></li>
             <li><span class="numero">03</span><span class="titulo">Barry Can't Swim - Late Night Tales: Continuous Mix</span></li>
             <li><span class="numero">04</span><span class="titulo">Earlham Mystics - Truth</span></li>
             <li><span class="numero">05</span><span class="titulo">Aphex Twin, Four Tet - Untitled|SAW2 CD1 Track1|-Four Tet Mix</span></li>
@@ -417,7 +448,6 @@
         </audio>
     </div>
 
-    
     <script src="script2.js"></script>
 </body>
 </html>
