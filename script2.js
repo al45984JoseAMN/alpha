@@ -80,6 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Blame - James Zabiela",
             src: "musica/Blame - James Zabiela.mp3"
+        },
+        {
+            name: "Obsession - DjRUM",
+            src: "musica/Obsession - DjRUM.mp3"
+        },
+        {
+            name: "You Thought - Mall Grab",
+            src: "musica/You Thought - Mall Grab.mp3"
         }
     ];
 
