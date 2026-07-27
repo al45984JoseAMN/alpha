@@ -141,13 +141,13 @@
             box-shadow: 0 6px 20px rgba(243, 131, 219, 0.5);
         }
 
-        /* --- Estilos del Footer (Ancho Completo) --- */
+        /* --- Estilos del Footer --- */
         .alpha-footer {
             background-color: var(--card-bg, #1e1e1e);
             border-top: 1px solid var(--border-color, #333333);
             padding: 40px 40px 20px 40px;
             margin-top: 60px;
-            color: #ffffff;
+            color: var(--text-color, #ffffff);
             font-family: inherit;
             width: 100%;
             box-sizing: border-box;
@@ -182,7 +182,8 @@
 
         .footer-brand p {
             font-size: 13px;
-            opacity: 0.8;
+            color: var(--text-color, #ffffff);
+            opacity: 0.85;
             max-width: 400px;
             line-height: 1.4;
         }
@@ -219,13 +220,13 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
+            background-color: var(--tag-bg, rgba(255, 255, 255, 0.05));
+            color: var(--text-color, #ffffff);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 13px;
             text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
             transition: all 0.3s ease;
         }
 
@@ -242,10 +243,11 @@
             max-width: 1200px;
             margin: 30px auto 0 auto;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.05));
             text-align: center;
             font-size: 12px;
-            opacity: 0.6;
+            color: var(--text-color, #ffffff);
+            opacity: 0.7;
             box-sizing: border-box;
         }
     </style>
@@ -558,7 +560,7 @@
         </audio>
     </div>
 
-    <!-- Footer de αlpha (Extendido a todo lo ancho) -->
+    <!-- Footer de αlpha  -->
     <footer class="alpha-footer">
         <div class="footer-content">
             <div class="footer-brand">
@@ -569,9 +571,9 @@
             <div class="footer-socials">
                 <h4>Conecta con la escena</h4>
                 <div class="social-icons">
-                    <a href="https://open.spotify.com/user/31sub5myw2q6czyfy73m6zkhuefe" target="_blank" class="social-link">Spotify</a>
+                    <a href="https://spotify.com" target="_blank" class="social-link">Spotify</a>
                     <a href="https://www.beatport.com" target="_blank" class="social-link">Beatport</a>
-                    <a href="https://soundcloud.com/djgarrett-797698598" target="_blank" class="social-link">SoundCloud</a>
+                    <a href="https://soundcloud.com" target="_blank" class="social-link">SoundCloud</a>
                 </div>
             </div>
         </div>
