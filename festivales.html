@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festivales y Sets en Vivo - αlpha</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <style type="text/css">
+        /* --- Rediseño limpio y optimizado para la cuadrícula --- */
+        body {
+            padding-bottom: 40px;
+        }
+
+        .grid-festivales {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .card-festival {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-festival:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(243, 131, 219, 0.25);
+            border-color: var(--accent-color);
+        }
+
+        .card-festival img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .card-festival-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-festival-body h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .card-festival-body p {
+            font-size: 14px;
+            line-height: 1.5;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+
+        .card-festival-body ul {
+            margin: 0 0 15px 0;
+            padding-left: 18px;
+            font-size: 13px;
+            line-height: 1.4;
+            opacity: 0.9;
+            flex: 1;
+        }
+
+        .card-festival-body li {
+            margin-bottom: 6px;
+        }
+
+        .badge-categoria {
+            align-self: flex-start;
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--accent-color);
+            background-color: rgba(243, 131, 219, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(243, 131, 219, 0.2);
+            margin-bottom: 8px;
+        }
+
+        /* Responsividad para pantallas medianas y pequeñas */
+        @media (max-width: 900px) {
+            .grid-festivales {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid-festivales {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="boton-modo" class="btn-modo">Modo Oscuro</button>
+
+    <h1>Festivales y Sets en Vivo</h1>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <a href="index.html" class="link-tracklist">———-»» Volver al Inicio ««———-</a>
+    </div>
+
+    <section class="card-container" style="margin-top: 0;">
+        <div class="card-text" style="text-align: center;">
+            <h2>El Pulso de la Escena Electrónica Global</h2>
+            <p class="info-genero" style="border-left: none; background: transparent; padding: 0; text-align: center;">
+                La música electrónica es un movimiento cultural masivo que trasciende las fronteras del estudio de grabación. A través de la experimentación rítmica, la potencia de los sintetizadores y la comunión en las pistas de baile, los grandes encuentros y transmisiones en directo definen la evolución constante de este género, uniendo a comunidades enteras bajo una misma frecuencia sonora.
+            </p>
+        </div>
+    </section>
+
+    <!-- Sección de Festivales en formato Grid alineado de 3 columnas -->
+    <h2 style="text-align: center; margin-top: 40px;">Festivales Emblemáticos</h2>
+
+    <div class="grid-festivales">
+        <!-- Futur Festival -->
+        <div class="card-festival">
+            <img src="imagenes_proyecto/futur.jpg" alt="Futur Festival" loading="lazy">
+            <div class="card-festival-body">
+                <span class="badge-categoria">Festival</span>
+                <h3>Futur Festival</h3>
+                <p>El Futur Festival (originario de Turín, Italia) está considerado como uno de los festivales de música electrónica más importantes, vanguardistas e influyentes del mundo.</p>
+                <ul>
+                    <li><strong>Esencia musical:</strong> Centrado principalmente en el techno y el house, reuniendo año con año a los DJs y productores más cotizados de la escena global.</li>
+                    <li><strong>Identidad industrial:</strong> Se desarrolla en espacios de arquitectura postindustrial al aire libre (como el Parco Dora en Turín o el Parque Fundidora), fusionando estructuras de acero y concreto con tecnología de punta y artes digitales.</li>
+                    <li><strong>Experiencia diurna:</strong> Nació como un evento 100% diurno durante el verano europeo, apostando por una atmósfera vibrante y comunitaria.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ultra Music Festival -->
+        <div class="card-festival">
+            <img src="imagenes_proyecto/ultra.jpg" alt="Ultra Music Festival" loading="lazy">
+            <div class="card-festival-body">
+                <span class="badge-categoria">Massive</span>
+                <h3>Ultra Music Festival</h3>
+                <p>El Ultra Music Festival (UMF) es uno de los festivales de música electrónica más emblemáticos, masivos e influyentes del planeta.</p>
+                <ul>
+                    <li><strong>Origen y Sede:</strong> Fundado en 1999, se celebra cada año en marzo en Bayfront Park, Downtown Miami, marcando el cierre de la Miami Music Week.</li>
+                    <li><strong>Esencia musical:</strong> Abarca desde el EDM mainstream, big room, trance y electro house en su Mainstage, hasta los sonidos profundos del house y techno en su bloque conceptual RESISTANCE.</li>
+                    <li><strong>Producción:</strong> Mundialmente famoso por sus producciones hipertecnológicas, pantallas gigantes, pirotecnia, láseres y diseños de escenarios futuristas.</li>
+                    <li><strong>Expansión Global:</strong> Bajo Ultra Worldwide, se replica en decenas de países alrededor de los cinco continentes.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Exit Festival -->
+        <div class="card-festival">
+            <img src="imagenes_proyecto/EXIT-festival.jpg" alt="Exit Festival" loading="lazy">
+            <div class="card-festival-body">
+                <span class="badge-categoria">Cultural</span>
+                <h3>Exit Festival</h3>
+                <p>El Exit Festival es uno de los festivales de música más grandes, premiados e ideológicamente únicos de Europa.</p>
+                <ul>
+                    <li><strong>Orígenes Revolucionarios:</strong> Nació en el año 2000 en Novi Sad, Serbia, como un movimiento de protesta estudiantil por la paz y la democracia.</li>
+                    <li><strong>La Icónica Sede:</strong> Se instala cada verano sobre los laberínticos terrenos del siglo XVIII de la Fortaleza de Petrovaradin, situada a la orilla del río Danubio.</li>
+                    <li><strong>Diversidad Musical:</strong> Gran eclecticismo que abarca desde rock, metal, punk, hip-hop y reggae, hasta la legendaria Dance Arena, templo de la música electrónica al aire libre.</li>
+                    <li><strong>Gira Global:</strong> Se ha expandido internacionalmente con eventos en países como Montenegro, Croacia, Malta y Egipto.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- AVA Festival -->
+        <div class="card-festival">
+            <img src="imagenes_proyecto/ava-festival.jpg" alt="AVA Festival" loading="lazy">
+            <div class="card-festival-body">
+                <span class="badge-categoria">Vanguardia</span>
+                <h3>AVA Festival</h3>
+                <p>El AVA Festival (Audio Visual Arts) es un festival y conferencia internacional de música electrónica y artes visuales celebrado en Belfast, Irlanda del Norte.</p>
+                <ul>
+                    <li><strong>Sede Industrial:</strong> Se lleva a cabo en los históricos Titanic Slipways, utilizando un impresionante telón de fondo industrial con contenedores y andamios.</li>
+                    <li><strong>Enfoque Sonoro:</strong> Profundamente enfocado en la cultura de club underground, destacando techno, house, electro, drum & bass y UK garage junto a instalaciones multimedia.</li>
+                    <li><strong>Creators Forum:</strong> Incluye conferencias, talleres y paneles de discusión enfocados en la producción musical y la tecnología.</li>
+                    <li><strong>Impacto Cultural:</strong> Considerado un catalizador cultural clave y referente de la escena electrónica contemporánea en el Reino Unido e Irlanda.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Awakenings Festival -->
+        <div class="card-festival">
+            <img src="imagenes_proyecto/aweke.jpg" alt="Awakenings Festival" loading="lazy">
+            <div class="card-festival-body">
+                <span class="badge-categoria">Techno Temple</span>
+                <h3>Awakenings Festival</h3>
+                <p>El Awakenings Festival está considerado como la meca mundial y el festival de música techno más grande y prestigioso del planeta.</p>
+                <ul>
+                    <li><strong>Orígenes y Sede:</strong> Nació en los Países Bajos y actualmente se celebra cada año en los terrenos boscosos y lagos de Beekse Bergen en Hilvarenbeek.</li>
+                    <li><strong>El Templo del Techno:</strong> Evento definitivo para los puristas del género, reuniendo a la élite mundial del techno, desde sonido industrial y hard techno hasta vertientes melódicas.</li>
+                    <li><strong>Producción Monumental:</strong> Caracterizado por despliegues visuales imponentes, rayos láser de precisión quirúrgica y sistemas de sonido ultra potentes.</li>
+                    <li><strong>Alcance:</strong> Organiza eventos icónicos durante el Amsterdam Dance Event (ADE) en octubre y ediciones especiales en Europa.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Sets en Vivo y Plataformas -->
+    <h2 style="text-align: center; margin-top: 50px;">Sets en Vivo & Plataformas de Transmisión</h2>
+    <p class="info-genero" style="margin-bottom: 20px;">
+        Los espacios clave donde la curaduría íntima, las transmisiones callejeras y la crítica especializada se unen para difundir la cultura de club y la música electrónica en directo.
+    </p>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/boiler.webp" alt="Boiler Room" loading="lazy">
+            <div class="card-text">
+                <h2>Boiler Room</h2>
+                <p>Boiler Room es una plataforma británica de difusión musical que transmite sesiones de DJs en vivo por todo el mundo. Su formato característico sitúa al DJ en el centro, rodeado por el público a su misma altura.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/lot.png" alt="The Lot Radio" loading="lazy">
+            <div class="card-text">
+                <h2>The Lot Radio</h2>
+                <p>The Lot Radio es una estación de radio independiente en línea que transmite en vivo las 24 horas, los 7 días de la semana, desde un contenedor de envío recuperado en un terreno baldío de Brooklyn, Nueva York. Transmite música electrónica y alternativa variada, financiándose de forma autónoma mediante un quiosco de café contiguo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <div class="card-content">
+            <img src="imagenes_proyecto/djmag.jpg" alt="DJ Mag" loading="lazy">
+            <div class="card-text">
+                <h2>DJ Mag</h2>
+                <p>DJ Mag HQ es el estudio de grabación y espacio para eventos ubicado en el sótano de la oficina de DJ Mag en Londres, Reino Unido. Se utiliza principalmente para transmitir su famosa serie de DJ sets y transmisiones en vivo en su canal de YouTube de DJ Mag.</p>
+            </div>
+        </div>
+    </section>
+
+    <div style="text-align: center; margin: 40px 0;">
+        <a href="index.html" class="link-tracklist">———-»» Volver al Inicio ««———-</a>
+    </div>
+
+    <script>
+        const botonModo = document.getElementById('boton-modo');
+        
+        // Comprobar si hay un modo guardado previamente en localStorage
+        if (localStorage.getItem('modoOscuro') === 'activo') {
+            document.body.classList.add('dark-mode');
+            botonModo.textContent = 'Modo Claro';
+        }
+
+        botonModo.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                botonModo.textContent = 'Modo Claro';
+                localStorage.setItem('modoOscuro', 'activo');
+            } else {
+                botonModo.textContent = 'Modo Oscuro';
+                localStorage.setItem('modoOscuro', 'inactivo');
+            }
+        });
+    </script>
+
+</body>
+</html>
