@@ -115,7 +115,6 @@
             color: #121212;
             box-shadow: 0 0 15px rgba(51, 224, 255, 0.4);
         }
-
         
         .seccion-unete {
             text-align: center;
@@ -140,6 +139,114 @@
             opacity: 0.9;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(243, 131, 219, 0.5);
+        }
+
+        /* --- Estilos del Footer (Ancho Completo) --- */
+        .alpha-footer {
+            background-color: var(--card-bg, #1e1e1e);
+            border-top: 1px solid var(--border-color, #333333);
+            padding: 40px 40px 20px 40px;
+            margin-top: 60px;
+            color: #ffffff;
+            font-family: inherit;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .footer-brand h3 {
+            color: var(--accent-color, #33e0ff);
+            font-size: 24px;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            opacity: 0.8;
+            max-width: 400px;
+            line-height: 1.4;
+        }
+
+        .footer-socials {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-socials {
+                align-items: flex-start;
+            }
+        }
+
+        .footer-socials h4 {
+            font-size: 14px;
+            color: var(--accent-color, #33e0ff);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color, #33e0ff);
+            color: #121212;
+            border-color: var(--accent-color, #33e0ff);
+            box-shadow: 0 0 15px rgba(51, 224, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            width: 100%;
+            max-width: 1200px;
+            margin: 30px auto 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.6;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -441,7 +548,6 @@
         <a href="festivales.html" class="link-tracklist">———-»» Festivales y Sets en Vivo ««———-</a>
     </div>
 
-
     <div class="floating-player">
         <div class="player-info">
             <span id="player-title">Lush FM Trance Fingers - Live at Alexandra Palace London, 24th May 2023 - Four Tet</span>
@@ -451,6 +557,29 @@
             Your browser does not support the audio element.
         </audio>
     </div>
+
+    <!-- Footer de αlpha (Extendido a todo lo ancho) -->
+    <footer class="alpha-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>αlpha</h3>
+                <p>Espacio digital dedicado a la exploración, análisis y difusión de la música electrónica underground y experimental.</p>
+            </div>
+            
+            <div class="footer-socials">
+                <h4>Conecta con la escena</h4>
+                <div class="social-icons">
+                    <a href="https://open.spotify.com/user/31sub5myw2q6czyfy73m6zkhuefe" target="_blank" class="social-link">Spotify</a>
+                    <a href="https://www.beatport.com" target="_blank" class="social-link">Beatport</a>
+                    <a href="https://soundcloud.com/djgarrett-797698598" target="_blank" class="social-link">SoundCloud</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 αlpha. Todos los derechos reservados. Underground Sound Culture.</p>
+        </div>
+    </footer>
 
     <script src="script2.js"></script>
 </body>
