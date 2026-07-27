@@ -1,6 +1,4 @@
-/* ================================================= */
-/* VARIABLES DEL MODO OSCURO                         */
-/* ================================================= */
+/*variables modo oscuro*/
 :root {
     --bg-color: #f5f6fa;
     --text-color: #2f3542;
@@ -18,9 +16,7 @@ body.dark-mode {
     --shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* ================================================= */
-/* ESTILOS GENERALES DE LA PÁGINA                     */
-/* ================================================= */
+/* Estlos generales de la pagina*/
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -33,7 +29,7 @@ body {
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
-    padding-bottom: 90px; /* Espacio para que el reproductor flotante no tape contenido */
+    padding-bottom: 90px; 
 }
 
 h1 {
@@ -47,9 +43,7 @@ h2 {
     color: var(--text-color);
 }
 
-/* ================================================= */
-/* CONTENEDOR MULTIMEDIA PRINCIPAL                   */
-/* ================================================= */
+/*contenedor multimedia principal*/
 .contenido-container {
     display: flex;
     flex-direction: column;
@@ -74,9 +68,7 @@ audio {
     max-width: 400px;
 }
 
-/* ================================================= */
-/* IMÁGENES Y EFECTOS HOVER                          */
-/* ================================================= */
+/*imagenes y efectos hover*/
 .contenedor-imagen {
     display: flex;
     justify-content: center;
@@ -97,9 +89,7 @@ img:hover {
     box-shadow: 0px 0px 20px rgba(226, 37, 147, 0.5);
 }
 
-/* ================================================= */
-/* ENLACES Y BOTÓN MODO OSCURO                       */
-/* ================================================= */
+/*enlaces y boton modo oscuro*/
 .link-tracklist {
     margin-top: 15px;
     text-decoration: none;
@@ -127,9 +117,7 @@ body.dark-mode .btn-modo {
     color: #121212;
 }
 
-/* ================================================= */
-/* TARJETAS                                          */
-/* ================================================= */
+/*tarjetas*/
 .card-container {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -169,9 +157,7 @@ body.dark-mode .btn-modo {
     }
 }
 
-/* ================================================= */
-/* LISTA ANIMADA DE CANCIONES                        */
-/* ================================================= */
+/*lista animada de canciones*/
 .lista-canciones-box {
     width: 100%;
     max-width: 450px;
@@ -238,9 +224,7 @@ body.dark-mode .lista-animada li:hover {
     overflow: hidden;
 }
 
-/* ================================================= */
-/* CAJAS DE INFORMACIÓN                              */
-/* ================================================= */
+/*cajas de informacion*/
 .info-genero {
     width: 100%;
     max-width: 800px;
@@ -260,9 +244,7 @@ body.dark-mode .info-genero {
     border-left-color: rgba(255, 255, 255, 0.2);
 }
 
-/* ================================================= */
-/* TABLA DE EVENTOS                                  */
-/* ================================================= */
+/*tabla de eventos*/
 .tabla-eventos {
     width: 100%;
     max-width: 800px;
@@ -290,9 +272,7 @@ body.dark-mode .info-genero {
     background-color: rgba(255, 51, 245, 0.178);
 }
 
-/* ================================================= */
-/* SLIDER / CARRUSEL                                 */
-/* ================================================= */
+/*slider*/
 .slider-container {
     width: 100%;
     max-width: 800px;
@@ -384,9 +364,7 @@ body.dark-mode .info-genero {
     right: 15px;
 }
 
-/* ================================================= */
-/* ANIMACIONES PARA LA LISTA DE CANCIONES            */
-/* ================================================= */
+/*animacion lista de canciones*/
 @keyframes aparecerLista {
     from {
         opacity: 0;
@@ -419,9 +397,7 @@ body.dark-mode .info-genero {
 .lista-animada li:nth-child(19) { animation-delay: 1.9s; }
 .lista-animada li:nth-child(20) { animation-delay: 2.0s; }
 
-/* ================================================= */
-/* APARTADO: RECOMENDACIONES (AUDIOS)                */
-/* ================================================= */
+/*recomendaciones: audios*/
 .recommendations-section {
     width: 100%;
     max-width: 800px;
@@ -493,9 +469,7 @@ body.dark-mode .audio-card {
     height: 38px;
 }
 
-/* ================================================= */
-/* REPRODUCTOR DE MÚSICA FLOTANTE                    */
-/* ================================================= */
+/*reproductor de musica flotante*/
 .floating-player {
     position: fixed;
     bottom: 0;
@@ -539,7 +513,7 @@ body.dark-mode .audio-card {
     }
 }
 
-/* --- ESTILOS PARA LA NUEVA SECCIÓN COMBINADA --- */
+    /*seccion combinada*/
         .seccion-moodboard-manifiesto {
             display: flex;
             flex-direction: column;
@@ -591,7 +565,7 @@ body.dark-mode .audio-card {
             margin-top: 0;
             font-size: 22px;
             color: var(--accent-color);
-            border-bottom: none; /* Quitamos la línea para que luzca más limpio */
+            border-bottom: none; 
             padding-bottom: 0;
         }
 

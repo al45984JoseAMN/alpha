@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     
     <style type="text/css">
-        /* --- Rediseño limpio y optimizado para la cuadrícula --- */
+        
         body {
             padding-bottom: 40px;
         }
@@ -93,7 +93,7 @@
             margin-bottom: 8px;
         }
 
-        /* Responsividad para pantallas medianas y pequeñas */
+        
         @media (max-width: 900px) {
             .grid-festivales {
                 grid-template-columns: repeat(2, 1fr);
@@ -253,7 +253,7 @@
     <script>
         const botonModo = document.getElementById('boton-modo');
         
-        // Comprobar si hay un modo guardado previamente en localStorage
+        
         if (localStorage.getItem('modoOscuro') === 'activo') {
             document.body.classList.add('dark-mode');
             botonModo.textContent = 'Modo Claro';
