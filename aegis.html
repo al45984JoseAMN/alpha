@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis: Tea</title>
+    <link rel="stylesheet" href="aegis.css">
+    <!-- Google Fonts: EB Garamond y Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,400;1,600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Elementos decorativos de fondo -->
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+
+    <!-- Control de Volumen Ambiental Flotante -->
+    <div class="floating-volume-control">
+        <span class="volume-icon">♪</span>
+        <input type="range" id="globalVolume" min="0" max="1" step="0.01" value="1" oninput="changeVolume(this.value)">
+    </div>
+
+    <!-- Contenedor Principal -->
+    <div class="main-container">
+        <!-- Columna Izquierda: Perfil y Descripción Mística -->
+        <div class="profile-section">
+            <h1 class="mystic-title">Aegis: Tea</h1>
+            <div class="img-container character-aura">
+                <img src="imagenes_proyecto/Nekojira.jpg" alt="Tea / Aegis">
+            </div>
+            <p class="mystic-description">
+                Entre pulsos digitales y sombras de neón, la presencia de Tea se desvanece en un flujo continuo de frecuencias abstractas. Su esencia evoca un santuario sonoro donde el tiempo se detiene y las memorias de la noche se transforman en vibraciones puras.
+            </p>
+        </div>
+
+        <!-- Columna Derecha: Slider Vertical con Arrastre y Profundidad -->
+        <div class="music-section">
+            <h3>αegis fraqmentləri</h3>
+            
+            <!-- Interruptor de Reproducción Continua -->
+            <div class="autoplay-toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="autoplayToggle" onchange="toggleContinuousPlay(this)">
+                    <span class="slider-switch"></span>
+                </label>
+                <span class="autoplay-label">Reproducción continua</span>
+            </div>
+
+            <div class="vertical-slider-container">
+                <div class="slider-track" id="musicSlider">
+                    
+                    <!-- Canción 1 -->
+                    <div class="song-card active" onclick="selectSong(0)">
+                        <div class="song-main-row">
+                            <div class="song-info">
+                                <span class="song-title">Tojita sekai</span>
+                                <span class="song-artist">Camellia</span>
+                            </div>
+                            <span class="track-number">01</span>
+                        </div>
+                        <div class="player-controls" id="player-0">
+                            <button class="btn-play-pause" onclick="togglePlay(event, 0)">▶</button>
+                            <span class="current-time">00:00</span>
+                            <div class="progress-bar-container" onclick="seek(event, 0)">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-duration">00:00</span>
+                            <audio class="audio-element" preload="metadata" src="aegis/Tojita Sekai - Camellia.mp3"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 2 -->
+                    <div class="song-card" onclick="selectSong(1)">
+                        <div class="song-main-row">
+                            <div class="song-info">
+                                <span class="song-title">Tokyo Blue Pipe (Original Mix)</span>
+                                <span class="song-artist">Nhato</span>
+                            </div>
+                            <span class="track-number">02</span>
+                        </div>
+                        <div class="player-controls" id="player-1">
+                            <button class="btn-play-pause" onclick="togglePlay(event, 1)">▶</button>
+                            <span class="current-time">00:00</span>
+                            <div class="progress-bar-container" onclick="seek(event, 1)">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-duration">00:00</span>
+                            <audio class="audio-element" preload="metadata" src="aegis/Nhato - Tokyo Blue Pipe - Original Mix.mp3"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 3 -->
+                    <div class="song-card" onclick="selectSong(2)">
+                        <div class="song-main-row">
+                            <div class="song-info">
+                                <span class="song-title">Speedrun (Kotori x Daeya Remix)</span>
+                                <span class="song-artist">Ace Aura</span>
+                            </div>
+                            <span class="track-number">03</span>
+                        </div>
+                        <div class="player-controls" id="player-2">
+                            <button class="btn-play-pause" onclick="togglePlay(event, 2)">▶</button>
+                            <span class="current-time">00:00</span>
+                            <div class="progress-bar-container" onclick="seek(event, 2)">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-duration">00:00</span>
+                            <audio class="audio-element" preload="metadata" src="aegis/Speedrun - Kotori x Daeya Remix - Ace Aura.mp3"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 4 -->
+                    <div class="song-card" onclick="selectSong(3)">
+                        <div class="song-main-row">
+                            <div class="song-info">
+                                <span class="song-title">Reborn</span>
+                                <span class="song-artist">Scarfaith</span>
+                            </div>
+                            <span class="track-number">04</span>
+                        </div>
+                        <div class="player-controls" id="player-3">
+                            <button class="btn-play-pause" onclick="togglePlay(event, 3)">▶</button>
+                            <span class="current-time">00:00</span>
+                            <div class="progress-bar-container" onclick="seek(event, 3)">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-duration">00:00</span>
+                            <audio class="audio-element" preload="metadata" src="aegis/Scarfaith - Reborn.mp3"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 5 -->
+                    <div class="song-card" onclick="selectSong(4)">
+                        <div class="song-main-row">
+                            <div class="song-info">
+                                <span class="song-title">Mutabilis</span>
+                                <span class="song-artist">Srav3R</span>
+                            </div>
+                            <span class="track-number">05</span>
+                        </div>
+                        <div class="player-controls" id="player-4">
+                            <button class="btn-play-pause" onclick="togglePlay(event, 4)">▶</button>
+                            <span class="current-time">00:00</span>
+                            <div class="progress-bar-container" onclick="seek(event, 4)">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-duration">00:00</span>
+                            <audio class="audio-element" preload="metadata" src="aegis/Mutabilis - Srav3R.mp3"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 6 -->
+                    <div class="song-card" onclick="selectSong(5)">
+                        <div class="song-main-row">
+                            <div class="song-info">
+                                <span class="song-title">Try again</span>
+                                <span class="song-artist">USAO</span>
+                            </div>
+                            <span class="track-number">06</span>
+                        </div>
+                        <div class="player-controls" id="player-5">
+                            <button class="btn-play-pause" onclick="togglePlay(event, 5)">▶</button>
+                            <span class="current-time">00:00</span>
+                            <div class="progress-bar-container" onclick="seek(event, 5)">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-duration">00:00</span>
+                            <audio class="audio-element" preload="metadata" src="aegis/USAO - Try again.mp3"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 7 -->
+                    <div class="song-card" onclick="selectSong(6)">
+                        <div class="song-main-row">
+                            <div class="song-info">
+                                <span class="song-title">M3LTY RAiN</span>
+                                <span class="song-artist">aran, Srav3R</span>
+                            </div>
+                            <span class="track-number">07</span>
+                        </div>
+                        <div class="player-controls" id="player-6">
+                            <button class="btn-play-pause" onclick="togglePlay(event, 6)">▶</button>
+                            <span class="current-time">00:00</span>
+                            <div class="progress-bar-container" onclick="seek(event, 6)">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-duration">00:00</span>
+                            <audio class="audio-element" preload="metadata" src="aegis/aran, Srav3R - M3LTY RAiN (feat. Srav3R).mp3"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 8 -->
+                    <div class="song-card" onclick="selectSong(7)">
+                        <div class="song-main-row">
+                            <div class="song-info">
+                                <span class="song-title">I'll Be For You</span>
+                                <span class="song-artist">KO3, Kanae Asaba</span>
+                            </div>
+                            <span class="track-number">08</span>
+                        </div>
+                        <div class="player-controls" id="player-7">
+                            <button class="btn-play-pause" onclick="togglePlay(event, 7)">▶</button>
+                            <span class="current-time">00:00</span>
+                            <div class="progress-bar-container" onclick="seek(event, 7)">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-duration">00:00</span>
+                            <audio class="audio-element" preload="metadata" src="aegis/KO3, Kanae Asaba - I'll Be For You.mp3"></audio>
+                        </div>
+                    </div>
+
+                    <!-- Canción 9 -->
+                    <div class="song-card" onclick="selectSong(8)">
+                        <div class="song-main-row">
+                            <div class="song-info">
+                                <span class="song-title">Thistlect</span>
+                                <span class="song-artist">Feryquitous, nayuta</span>
+                            </div>
+                            <span class="track-number">09</span>
+                        </div>
+                        <div class="player-controls" id="player-8">
+                            <button class="btn-play-pause" onclick="togglePlay(event, 8)">▶</button>
+                            <span class="current-time">00:00</span>
+                            <div class="progress-bar-container" onclick="seek(event, 8)">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-duration">00:00</span>
+                            <audio class="audio-element" preload="metadata" src="aegis/Feryquitous, nayuta - Thistlect (feat. nayuta).mp3"></audio>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Controles de navegación rápida -->
+            <div class="slider-controls">
+                <button onclick="moveSlider(-1)">▲</button>
+                <button onclick="moveSlider(1)">▼</button>
+            </div>
+        </div>
+
+        <!-- Sección: Indigo Whisper (Con historia extendida y 2 columnas) -->
+        <div class="whisper-section">
+            <div class="img-container whisper-aura">
+                <img src="imagenes_proyecto/nekojira2.jpg" alt="Aegis Indigo Whisper">
+            </div>
+            <div class="whisper-content">
+                <h1 class="mystic-title">Indigo Whisper</h1>
+                <p class="mystic-description">
+                    En los confines donde el silencio digital se encuentra con el éter, Tea habita como la guardiana de las frecuencias perdidas. Su esencia está tejida con cuerdas invisibles y acordes ancestrales que resuenan en el vacío de la red, transformando cada vibración sonora en un hechizo de luz estelar.
+                </p>
+                <p class="mystic-description" style="margin-top: 15px;">
+                    Se dice que cuando una melodía busca refugio contra el olvido, desciende a su santuario indigo. Allí, entre susurros armónicos y compases atemporales, cuida que cada nota conserve su latido mágico, protegiendo los secretos musicales que el mundo físico ha olvidado.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer Místico Global (Posicionado al final absoluto dentro del contenedor) -->
+        <div class="mystic-footer">
+            <span class="alpha-symbol">α</span>
+            <p class="footer-message">"En el silencio entre frecuencias, el sistema sigue escuchando."</p>
+        </div>
+    </div>
+
+    <!-- Notificación Toast Estilo Fantasía Mística -->
+    <div id="toastNotification" class="toast-notification">
+        <span class="toast-icon">✦</span>
+        <div class="toast-content">
+            <span class="toast-label">Sintonía activa</span>
+            <span class="toast-song" id="toastSongTitle">Título - Artista</span>
+        </div>
+    </div>
+
+    <script src="aegis.js"></script>
+</body>
+</html>
