@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function verificarAegis() {
     const password = prompt("Introduce la contraseña de acceso para Aegis:");
     
-    if (password === "Aegis001") {
+    if (password === "aegis001") {
         window.location.href = "aegis.html";
     } else if (password !== null) {
         alert("Contraseña incorrecta. Acceso denegado.");
