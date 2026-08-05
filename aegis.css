@@ -188,7 +188,7 @@ body::after {
     text-shadow: 0 0 10px rgba(99, 179, 237, 0.25);
 }
 
-/* Sección Aegis: Indigo Whisper (Asignada a su propia área grid) */
+/* Sección Aegis: Indigo Whisper */
 .whisper-section {
     grid-area: whisper;
     display: flex;
@@ -205,7 +205,6 @@ body::after {
     box-sizing: border-box;
 }
 
-/* Imagen a la izquierda de Indigo Whisper */
 .whisper-section .img-container {
     flex: 0 0 320px;
     height: 400px;
@@ -229,7 +228,6 @@ body::after {
     transform: scale(1.03);
 }
 
-/* Bloque de texto a la derecha heredando la estética de Tea */
 .whisper-content {
     flex: 1;
     display: flex;
@@ -250,7 +248,6 @@ body::after {
     margin: 0;
 }
 
-/* Aura lumínica para nekojira2.jpg */
 .whisper-aura {
     position: relative;
 }
@@ -269,7 +266,7 @@ body::after {
     z-index: -1;
 }
 
-/* Footer Místico Global (Anclado al final absoluto del grid principal) */
+/* Footer Místico Global */
 .mystic-footer {
     grid-area: footer;
     display: flex;
@@ -467,11 +464,24 @@ input:checked + .slider-switch:before {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px; /* Espacio para separar la carátula del texto */
+}
+
+/* Estilos de la Miniatura / Carátula de la canción */
+.song-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
 }
 
 .song-info {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .song-title {
@@ -495,6 +505,7 @@ input:checked + .slider-switch:before {
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
     text-shadow: 0 0 6px rgba(165, 219, 255, 0.15);
+    flex-shrink: 0;
 }
 
 .song-card.active .track-number {
@@ -596,7 +607,7 @@ input:checked + .slider-switch:before {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-/* Notificación Toast - Estilo Fantasía Mística */
+/* Notificación Toast */
 .toast-notification {
     position: fixed;
     bottom: 30px;
@@ -722,5 +733,59 @@ input:checked + .slider-switch:before {
         bottom: 20px;
         left: 15px;
         right: 15px;
+    }
+}
+/* Botón de Regreso a Alpha */
+.back-to-alpha-btn {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 16px;
+    border-radius: 30px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.back-to-alpha-btn:hover {
+    background: rgba(49, 130, 206, 0.25);
+    border-color: rgba(99, 179, 237, 0.4);
+    box-shadow: 0 0 20px rgba(99, 179, 237, 0.3);
+    transform: translateY(-2px);
+}
+
+.back-to-alpha-btn .alpha-symbol {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    color: #63b3ed;
+    text-shadow: 0 0 8px rgba(99, 179, 237, 0.5);
+    line-height: 1;
+}
+
+.back-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    letter-spacing: 0.4px;
+}
+
+/* Ajuste responsivo para pantallas pequeñas (ej. móviles) */
+@media (max-width: 768px) {
+    .back-to-alpha-btn {
+        top: 15px;
+        left: 15px;
+        padding: 6px 12px;
+    }
+    .back-text {
+        font-size: 0.8rem;
     }
 }

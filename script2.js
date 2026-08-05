@@ -112,4 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// --- Portal de Aegis ---
+function verificarAegis() {
+    const password = prompt("Introduce la contraseña de acceso para Aegis:");
+    
+    if (password === "Aegis001") {
+        window.location.href = "aegis.html";
+    } else if (password !== null) {
+        alert("Contraseña incorrecta. Acceso denegado.");
+    }
+};
 //The Light of Aegis
