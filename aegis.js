@@ -4,7 +4,7 @@ let currentSongIndex = 0;
 let isContinuousPlayEnabled = false;
 let currentSliderOffset = 0;
 
-const totalSongs = 9;
+const totalSongs = 13; // Actualiza este valor si agregas o eliminas canciones
 
 document.addEventListener("DOMContentLoaded", () => {
     initPlayerEvents();
